@@ -1,4 +1,20 @@
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      contacts: [],
+      favoriteContacts: [],
+      calls: [],
+      userNumber: '',
+    }
+  },
+  methods: {
+    addNewContact() {
+      this.contacts.push(userNumber)
+    },
+  },
+}
+</script>
 
 <template>
   <div class="wrapper teal lighten-5">
