@@ -1,3 +1,8 @@
+import 'materialize-css/dist/css/materialize.min.css'
+import M from 'materialize-css'
+
+window.M = M
+
 document.addEventListener('DOMContentLoaded', function () {
   const elemsA = document.querySelectorAll('a')
   const elModal3 = document.querySelector('#modal3')
