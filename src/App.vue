@@ -1,16 +1,28 @@
 <script>
+import UIFavorites from './components/UIFavorites.vue'
+import UIPerson from './components/UIPerson.vue'
+import UIRecentCall from './components/UIRecentCall.vue'
+import WidgetNavigation from './components/WidgetNavigation.vue'
+
 export default {
+  components: { WidgetNavigation, UIFavorites, UIRecentCall, UIPerson },
+
   data() {
     return {
       contacts: [],
       favoriteContacts: [],
       calls: [],
       userNumber: '',
+      username: '',
     }
   },
   methods: {
     addNewContact() {
-      this.contacts.push(userNumber)
+      this.contacts.push({
+        username: this.username,
+        surname: this.surname,
+        userNumber: this.number,
+      })
     },
   },
 }
@@ -18,120 +30,15 @@ export default {
 
 <template>
   <div class="wrapper teal lighten-5">
-    <nav class="nav-extended teal">
-      <div class="nav-wrapper">
-        <form>
-          <div class="input-field">
-            <input
-              class="teal-text text-lighten-5"
-              id="search"
-              type="search"
-              placeholder="Поиск в контактах"
-              required
-            />
-            <label class="label-icon" for="search"
-              ><i class="material-icons">search</i></label
-            >
-            <i class="material-icons">close</i>
-          </div>
-        </form>
-      </div>
-
-      <div class="nav-content">
-        <ul class="tabs tabs-transparent">
-          <li class="tab">
-            <a href="#tab-1">
-              <span class="material-symbols-outlined">star</span>
-            </a>
-          </li>
-          <li class="tab">
-            <a href="#tab-2">
-              <span class="material-symbols-outlined">chronic</span>
-            </a>
-          </li>
-          <li class="tab">
-            <a class="active" href="#tab-3">
-              <span class="material-symbols-outlined">people</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
+    <WidgetNavigation></WidgetNavigation>
     <div>
       <div id="tab-1" class="col s12">
-        <div class="container">
-          <div id="app-favorites" class="row">
-            <div class="favorite col s6 m4 l3 xl2">
-              <div class="card-panel teal lighten-2 waves-effect waves-light">
-                <div class="center-align">
-                  <span
-                    class="transparent teal-text text-lighten-5 pic center-align material-symbols-outlined"
-                    >person</span
-                  >
-                </div>
-                <span class="white-text">Петр Иванов</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <UIFavorites></UIFavorites>
       </div>
       <div id="tab-2" class="col s12">
-        <div class="container">
-          <div class="row valign-wrapper">
-            <div class="recent-call col s12">
-              <ul id="app-recent-calls" class="collection">
-                <li
-                  class="recent-call waves-effect collection-item avatar transparent z-depth-1"
-                >
-                  <i class="material-icons circle teal darken-3">person</i>
-                  <span class="title"><b>0991234567</b></span>
-                  <p>
-                    <i>Позавчера</i>
-                  </p>
-                  <a href="#!" class="secondary-content">
-                    <i class="material-icons">phone</i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <UIRecentCall></UIRecentCall>
       </div>
-      <div id="tab-3" class="col s12">
-        <ul id="app-contacts" class="collection">
-          <li
-            href="#modal2"
-            class="contact modal-trigger collection-item transparent waves-effect"
-          >
-            <div class="container">
-              <div class="row valign-wrapper">
-                <div class="col s4">
-                  <span
-                    class="teal darken-1 teal-text text-lighten-4 pic circle center-align material-symbols-outlined"
-                    >person</span
-                  >
-                </div>
-                <div class="col s4">
-                  <span class=""><b>Петр Иванов</b></span>
-                </div>
-                <div class="col s4">
-                  <span class="badge new">phone</span>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <div class="fixed-action-btn">
-          <a
-            id="elFab"
-            href="#modal1"
-            class="btn-floating btn-large pink accent-4 waves-effect waves-light modal-trigger pulse"
-          >
-            <i class="large material-icons">person_add</i>
-          </a>
-        </div>
-      </div>
+      <UIPerson></UIPerson>
     </div>
   </div>
 
