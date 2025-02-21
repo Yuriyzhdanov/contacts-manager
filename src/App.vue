@@ -1,21 +1,21 @@
 <script>
-import UIFavorites from './components/UIFavorites.vue'
-import UIPerson from './components/UIPerson.vue'
-import UIRecentCall from './components/UIRecentCall.vue'
-import WidgetAddContact from './components/WidgetAddContact.vue'
-import WidgetInfoPerson from './components/WidgetInfoPerson.vue'
-import WidgetNavigation from './components/WidgetNavigation.vue'
-import WidgetSearch from './components/WidgetSearch.vue'
+import FavoritesTab from './components/FavoritesTab.vue'
+import ContactsTab from './components/ContactsTab.vue'
+import RecentCallsTab from './components/RecentCallsTab.vue'
+import AddContactModal from './components/AddContactModal.vue'
+import ContactDetailModal from './components/ContactDetailModal.vue'
+import NavigationBar from './components/NavigationBar.vue'
+import SearchResultsModal from './components/SearchResultsModal.vue'
 
 export default {
   components: {
-    WidgetNavigation,
-    UIFavorites,
-    UIRecentCall,
-    UIPerson,
-    WidgetAddContact,
-    WidgetInfoPerson,
-    WidgetSearch,
+    NavigationBar,
+    FavoritesTab,
+    RecentCallsTab,
+    ContactsTab,
+    AddContactModal,
+    ContactDetailModal,
+    SearchResultsModal,
   },
 
   data() {
@@ -41,31 +41,19 @@ export default {
 
 <template>
   <div class="wrapper teal lighten-5">
-    <WidgetNavigation></WidgetNavigation>
+    <NavigationBar></NavigationBar>
     <div>
-      <div id="tab-1" class="col s12">
-        <UIFavorites></UIFavorites>
-      </div>
-      <div id="tab-2" class="col s12">
-        <UIRecentCall></UIRecentCall>
-      </div>
-      <UIPerson></UIPerson>
+      <FavoritesTab></FavoritesTab>
+      <RecentCallsTab></RecentCallsTab>
+      <ContactsTab></ContactsTab>
     </div>
   </div>
 
   <!-- Modal Structure  -->
 
-  <div id="modal1" class="modal bottom-sheet">
-    <WidgetAddContact></WidgetAddContact>
-  </div>
-
-  <div id="modal2" class="modal bottom-sheet">
-    <WidgetInfoPerson></WidgetInfoPerson>
-  </div>
-
-  <div id="modal3" class="modal bottom-sheet modal-close non-overlay">
-    <WidgetSearch></WidgetSearch>
-  </div>
+  <AddContactModal></AddContactModal>
+  <ContactDetailModal></ContactDetailModal>
+  <SearchResultsModal></SearchResultsModal>
 </template>
 
 <style>
