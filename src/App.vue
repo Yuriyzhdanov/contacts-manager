@@ -22,20 +22,12 @@ export default {
     return {
       contacts: [],
       favoriteContacts: [],
-      calls: [],
+      recentCalls: [],
       userNumber: '',
       username: '',
     }
   },
-  methods: {
-    addNewContact() {
-      this.contacts.push({
-        username: this.username,
-        surname: this.surname,
-        userNumber: this.number,
-      })
-    },
-  },
+  methods: {},
 }
 </script>
 

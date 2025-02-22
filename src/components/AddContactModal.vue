@@ -1,3 +1,25 @@
+<script>
+export default {
+  emits: ['onAddContact'],
+
+  data() {
+    return {
+      contacts: [],
+      newContact: {
+        firstName: '',
+        secondName: '',
+        phone: '',
+      },
+    }
+  },
+
+  methods: {
+    addNewContact(contact) {
+      this.contacts.push({ ...contact })
+    },
+  },
+}
+</script>
 <template>
   <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
@@ -7,6 +29,7 @@
           <div class="row">
             <div class="input-field col s12">
               <input
+                v-model="newContact.firstName"
                 id="firstName"
                 name="firstName"
                 type="text"
@@ -18,6 +41,7 @@
           <div class="row">
             <div class="input-field col s12">
               <input
+                v-model="newContact.secondName"
                 id="secondName"
                 name="secondName"
                 type="text"
@@ -29,6 +53,7 @@
           <div class="row">
             <div class="input-field col s12">
               <input
+                v-model="newContact.phone"
                 id="phone"
                 name="phone"
                 type="tel"
@@ -72,6 +97,7 @@
                 </label>
               </div>
               <a
+                v-on:click="addNewContact"
                 id="appAddContact"
                 class="btn-ok waves-effect waves-light btn modal-close"
               >

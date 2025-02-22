@@ -6,6 +6,9 @@ export default {
     ContactItem,
     ContactAddButton,
   },
+  data() {
+    return {}
+  },
 }
 </script>
 
