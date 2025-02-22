@@ -1,13 +1,11 @@
 <script>
 import ContactItem from './ContactItem.vue'
 import ContactAddButton from './ContactAddButton.vue'
+
 export default {
   components: {
     ContactItem,
     ContactAddButton,
-  },
-  data() {
-    return {}
   },
 }
 </script>
