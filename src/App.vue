@@ -23,12 +23,20 @@ export default {
       contacts: [],
       favoriteContacts: [],
       recentCalls: [],
-      userNumber: '',
-      username: '',
     }
   },
   methods: {
+    validateContact(contact) {
+      if (!contact.firstName || !contact.phone) {
+        return false
+      }
+      return true
+    },
     addNewContact(contact) {
+      if (!this.validateContact(contact)) {
+        console.log('заполни форму')
+        return
+      }
       this.contacts.push({ ...contact })
     },
   },
@@ -44,7 +52,7 @@ export default {
     <div>
       <FavoritesTab></FavoritesTab>
       <RecentCallsTab></RecentCallsTab>
-      <ContactsTab></ContactsTab>
+      <ContactsTab v-bind:contacts="contacts"></ContactsTab>
     </div>
   </div>
 
@@ -217,9 +225,9 @@ nav.nav-extended form input:focus {
 #modal2 .modal-content {
   padding: 0;
 }
-#modal2 {
-  /* overflow: hidden; */
-}
+/* #modal2 {
+  overflow: hidden;
+} */
 
 ul > a {
   color: inherit;
@@ -229,9 +237,9 @@ ul > a {
   color: #fff;
 }
 
-#app-favorites {
-  /* text-align: center; */
-}
+/* #app-favorites {
+  text-align: center;
+} */
 #app-favorites .favorite {
   padding: 5px;
 }
