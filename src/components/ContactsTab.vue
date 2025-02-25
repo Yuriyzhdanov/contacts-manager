@@ -1,11 +1,11 @@
 <script>
 import ContactItem from './ContactItem.vue'
-import ContactAddButton from './ContactAddButton.vue'
+import UiContactAddButton from './UiContactAddButton.vue'
 
 export default {
   components: {
     ContactItem,
-    ContactAddButton,
+    UiContactAddButton,
   },
 }
 </script>
@@ -13,6 +13,6 @@ export default {
 <template>
   <div id="tab-3" class="col s12">
     <ContactItem></ContactItem>
-    <ContactAddButton></ContactAddButton>
+    <UiContactAddButton></UiContactAddButton>
   </div>
 </template>

@@ -27,11 +27,17 @@ export default {
       username: '',
     }
   },
+  methods: {
+    addNewContact(contact) {
+      this.contacts.push({ ...contact })
+    },
+  },
 }
 </script>
 
 <template>
   <div class="wrapper teal lighten-5">
+    {{ contacts }}
     <NavigationBar></NavigationBar>
     <!-- <WidgetSearch />
     <TabsSelector /> -->
@@ -44,7 +50,7 @@ export default {
 
   <!-- Modal Structure  -->
 
-  <AddContactModal></AddContactModal>
+  <AddContactModal v-on:onAddContact="addNewContact"></AddContactModal>
   <ContactDetailModal></ContactDetailModal>
   <SearchResultsModal></SearchResultsModal>
 </template>

@@ -13,7 +13,7 @@
             >
           </div>
           <div class="col s4">
-            <span class=""><b>Петр Иванов</b></span>
+            <span class=""><b>Петр Иванов </b></span>
           </div>
           <div class="col s4">
             <span class="badge new">phone</span>

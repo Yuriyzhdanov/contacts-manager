@@ -4,7 +4,6 @@ export default {
 
   data() {
     return {
-      contacts: [],
       newContact: {
         firstName: '',
         secondName: '',
@@ -14,8 +13,13 @@ export default {
   },
 
   methods: {
-    addNewContact(contact) {
-      this.contacts.push({ ...contact })
+    handleAddContact() {
+      this.$emit('onAddContact', { ...this.newContact })
+      this.newContact = {
+        firstName: '',
+        secondName: '',
+        phone: '',
+      }
     },
   },
 }
@@ -97,7 +101,7 @@ export default {
                 </label>
               </div>
               <a
-                v-on:click="addNewContact"
+                v-on:click="handleAddContact"
                 id="appAddContact"
                 class="btn-ok waves-effect waves-light btn modal-close"
               >
