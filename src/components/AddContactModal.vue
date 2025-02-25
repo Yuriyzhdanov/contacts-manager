@@ -58,6 +58,7 @@ export default {
             <div class="input-field col s12">
               <input
                 v-model="newContact.phone"
+                @input="newContact.phone = newContact.phone.replace(/\D/g, '')"
                 id="phone"
                 name="phone"
                 type="tel"

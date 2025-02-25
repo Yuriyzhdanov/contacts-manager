@@ -1,6 +1,14 @@
+<script>
+export default {
+  props: ['contacts'],
+}
+</script>
+
 <template>
   <ul id="app-contacts" class="collection">
     <li
+      v-for="(contact, idx) of contacts"
+      :key="idx"
       href="#modal2"
       class="contact modal-trigger collection-item transparent waves-effect"
     >
@@ -13,10 +21,12 @@
             >
           </div>
           <div class="col s4">
-            <span class=""><b>Петр Иванов </b></span>
+            <span class=""
+              ><b>{{ contact.firstName + ' ' + contact.secondName }}</b></span
+            >
           </div>
           <div class="col s4">
-            <span class="badge new">phone</span>
+            <span class="badge new">{{ contact.phone }}</span>
           </div>
         </div>
       </div>
