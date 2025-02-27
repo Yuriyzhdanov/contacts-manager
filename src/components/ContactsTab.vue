@@ -3,26 +3,27 @@ import ContactItem from './ContactItem.vue'
 import UiContactAddButton from './UiContactAddButton.vue'
 
 export default {
-  props: ['contacts'],
-  emits: ['onSelectContact'],
-
   components: {
     ContactItem,
     UiContactAddButton,
   },
 
-  methods: {
-    selectContact(contactId) {
-      this.$emit('onSelectContact', contactId)
-      console.log('tab', contactId)
-    },
-  },
+  props: ['contacts'],
+
+  emits: ['onSelectContact'],
 }
 </script>
 
 <template>
   <div id="tab-3" class="col s12">
-    <ContactItem v-bind:contacts="contacts"></ContactItem>
+    <ul id="app-contacts" class="collection">
+      <ContactItem
+        v-for="contact of contacts"
+        :key="contact.id"
+        :contact="contact"
+        @contact-selected="$emit('contact-selected', $event)"
+      ></ContactItem>
+    </ul>
     <UiContactAddButton></UiContactAddButton>
   </div>
 </template>

@@ -20,13 +20,33 @@ export default {
 
   data() {
     return {
-      contacts: [],
-      favoriteContacts: [],
-      favorite: false,
+      contacts: [
+        {
+          id: 33,
+          firstName: 'Vasya',
+          secondName: 'Petrov',
+          phone: '123456789',
+          isFavorite: true,
+        },
+        {
+          id: 42,
+          firstName: 'Petya',
+          secondName: 'Vasilev',
+          phone: '987654321',
+          isFavorite: true,
+        },
+      ],
       recentCalls: [],
       selectedContact: null,
     }
   },
+
+  watch: {
+    selectedContact(newValue) {
+      this.$emit('contact-selected', newValue)
+    },
+  },
+
   methods: {
     validateContact(contact) {
       if (!contact.firstName || !contact.phone) {
@@ -74,7 +94,10 @@ export default {
     <div>
       <FavoritesTab></FavoritesTab>
       <RecentCallsTab v-bind:contacts="contacts"></RecentCallsTab>
-      <ContactsTab v-bind:contacts="contacts"></ContactsTab>
+      <ContactsTab
+        v-bind:contacts="contacts"
+        @contact-selected="selectedContact = contact"
+      ></ContactsTab>
     </div>
   </div>
 
