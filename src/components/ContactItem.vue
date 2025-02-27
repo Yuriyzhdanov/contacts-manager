@@ -1,12 +1,20 @@
 <script>
 export default {
   props: ['contacts'],
+  emits: ['onSelectContact'],
+
+  methods: {
+    selectContact(contactId) {
+      this.$emit('onSelectContact', contactId)
+    },
+  },
 }
 </script>
 
 <template>
   <ul id="app-contacts" class="collection">
     <li
+      v-on:click="selectContact(contact.id)"
       v-for="(contact, idx) of contacts"
       :key="idx"
       href="#modal2"

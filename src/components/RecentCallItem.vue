@@ -1,7 +1,15 @@
+<script>
+export default {
+  props: ['contacts'],
+}
+</script>
+
 <template>
   <div class="recent-call col s12">
     <ul id="app-recent-calls" class="collection">
       <li
+        v-for="(contact, idx) of contacts"
+        :key="idx"
         class="recent-call waves-effect collection-item avatar transparent z-depth-1"
       >
         <i class="material-icons circle teal darken-3">person</i>
@@ -10,7 +18,7 @@
           <i>Позавчера</i>
         </p>
         <a href="#!" class="secondary-content">
-          <i class="material-icons">phone</i>
+          <i class="material-icons">{{ contact.phone }}</i>
         </a>
       </li>
     </ul>

@@ -22,7 +22,9 @@ export default {
     return {
       contacts: [],
       favoriteContacts: [],
+      favorite: false,
       recentCalls: [],
+      selectedContact: null,
     }
   },
   methods: {
@@ -32,12 +34,32 @@ export default {
       }
       return true
     },
+
     addNewContact(contact) {
       if (!this.validateContact(contact)) {
-        console.log('заполни форму')
+        console.log('заполните форму')
         return
       }
-      this.contacts.push({ ...contact })
+      this.contacts.push({ ...contact, id: Date.now(), favorite: false })
+    },
+
+    selectContact(contact) {
+      this.selectedContact = contact
+      console.log('work')
+    },
+
+    toggleFavorite(contact) {
+      if (this.favoriteContacts.includes(contact)) {
+        this.favoriteContacts = this.favoriteContacts.filter(c => c !== contact)
+        contact.favorite = false
+      } else {
+        this.favoriteContacts.push(contact)
+        contact.favorite = true
+      }
+    },
+
+    isFavorite(contact) {
+      return this.favoriteContacts.includes(contact)
     },
   },
 }
@@ -51,7 +73,7 @@ export default {
     <TabsSelector /> -->
     <div>
       <FavoritesTab></FavoritesTab>
-      <RecentCallsTab></RecentCallsTab>
+      <RecentCallsTab v-bind:contacts="contacts"></RecentCallsTab>
       <ContactsTab v-bind:contacts="contacts"></ContactsTab>
     </div>
   </div>
@@ -59,7 +81,10 @@ export default {
   <!-- Modal Structure  -->
 
   <AddContactModal v-on:onAddContact="addNewContact"></AddContactModal>
-  <ContactDetailModal></ContactDetailModal>
+  <ContactDetailModal
+    v-bind:contacts="contacts"
+    v-on:onSelectContact="selectContact"
+  ></ContactDetailModal>
   <SearchResultsModal></SearchResultsModal>
 </template>
 

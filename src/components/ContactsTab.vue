@@ -4,10 +4,18 @@ import UiContactAddButton from './UiContactAddButton.vue'
 
 export default {
   props: ['contacts'],
+  emits: ['onSelectContact'],
 
   components: {
     ContactItem,
     UiContactAddButton,
+  },
+
+  methods: {
+    selectContact(contactId) {
+      this.$emit('onSelectContact', contactId)
+      console.log('tab', contactId)
+    },
   },
 }
 </script>

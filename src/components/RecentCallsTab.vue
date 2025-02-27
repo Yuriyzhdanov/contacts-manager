@@ -1,6 +1,7 @@
 <script>
 import RecentCallItem from './RecentCallItem.vue'
 export default {
+  props: ['contacts'],
   components: {
     RecentCallItem,
   },
