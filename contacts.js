@@ -8,7 +8,7 @@ class Contacts extends Array {
 
   add(contact) {
     this.#currentId += 1
-    Object.assign(contact, { id: this.#currentId })
+    Object.assign(contact, { id: this.#currentId, isFavorite: false })
     this.push(contact)
   }
 
@@ -23,6 +23,20 @@ class Contacts extends Array {
     const index = this.findIndex(c => c.id === contact.id)
     if (index !== -1) {
       this.splice(index, 1)
+    }
+  }
+
+  addToFavorites(id) {
+    const contact = this.find(c => c.id === id)
+    if (contact) {
+      contact.isFavorite = true
+    }
+  }
+
+  removeFromFavorites(id) {
+    const contact = this.find(c => c.id === id)
+    if (contact) {
+      contact.isFavorite = false
     }
   }
 }
