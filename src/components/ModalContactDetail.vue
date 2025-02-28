@@ -22,7 +22,9 @@ export default {
               <span class="modal-close material-symbols-outlined">delete</span>
             </div>
           </div>
-          <h5 class="center-align white-text">Петр Иванов{{ contact }}</h5>
+          <h5 class="center-align white-text">
+            {{ contact.firstName }} {{ contact.secondName }}
+          </h5>
         </div>
         <div class="bottom">
           <div class="container">
@@ -33,7 +35,9 @@ export default {
                     class="waves-effect collection-item avatar transparent z-depth-1"
                   >
                     <i class="material-icons circle teal darken-3">person</i>
-                    <span class="title"><b>number</b></span>
+                    <span class="title"
+                      ><b>{{ contact.phone }}</b></span
+                    >
                     <p>
                       <i>Позавчера</i>
                     </p>
