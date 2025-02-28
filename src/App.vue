@@ -27,16 +27,17 @@ export default {
           secondName: 'Petrov',
           phone: '123456789',
           isFavorite: true,
+          isRecentCalls: true,
         },
         {
           id: 42,
           firstName: 'Petya',
           secondName: 'Vasilev',
           phone: '987654321',
-          isFavorite: false,
+          isRecentCalls: false,
         },
       ],
-      recentCalls: [],
+
       selectedContact: '',
     }
   },
@@ -45,8 +46,8 @@ export default {
       return this.contacts.filter(contact => contact.isFavorite)
     },
 
-    isRecentCalls(call) {
-      return this.recentCalls.includes(call)
+    isRecentCalls() {
+      return this.contacts.filter(contact => contact.isRecentCalls)
     },
   },
 
@@ -80,22 +81,22 @@ export default {
 <template>
   <div class="wrapper teal lighten-5">
     {{ contacts }}
-    <NavigationBar></NavigationBar>
+    <NavigationBar />
     <!-- <WidgetSearch />
     <TabsSelector /> -->
     <div>
-      <FavoritesTab v-bind:contacts="favoriteContacts"></FavoritesTab>
-      <RecentCallsTab v-bind:contacts="contacts"></RecentCallsTab>
+      <FavoritesTab v-bind:contacts="favoriteContacts" />
+      <RecentCallsTab v-bind:contacts="isRecentCalls" />
       <ContactsTab
         v-bind:contacts="contacts"
         @contact-selected="selectedContact = $event"
-      ></ContactsTab>
+      />
     </div>
   </div>
 
   <!-- Modal Structure  -->
 
-  <ModalAddContact v-on:onAddContact="addNewContact"></ModalAddContact>
+  <ModalAddContact v-on:onAddContact="addNewContact" />
   <ModalContactDetail :contact="selectedContact" />
   <ModalSearchResults />
 </template>
