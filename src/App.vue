@@ -3,9 +3,9 @@ import NavigationBar from './components/NavigationBar.vue'
 import FavoritesTab from './components/FavoritesTab.vue'
 import RecentCallsTab from './components/RecentCallsTab.vue'
 import ContactsTab from './components/ContactsTab.vue'
-import AddContactModal from './components/AddContactModal.vue'
-import ContactDetailModal from './components/ContactDetailModal.vue'
-import SearchResultsModal from './components/SearchResultsModal.vue'
+import ModalAddContact from './components/ModalAddContact.vue'
+import ModalContactDetail from './components/ModalContactDetail.vue'
+import ModalSearchResults from './components/ModalSearchResults.vue'
 
 export default {
   components: {
@@ -13,9 +13,9 @@ export default {
     FavoritesTab,
     RecentCallsTab,
     ContactsTab,
-    AddContactModal,
-    ContactDetailModal,
-    SearchResultsModal,
+    ModalAddContact,
+    ModalContactDetail,
+    ModalSearchResults,
   },
 
   data() {
@@ -36,14 +36,21 @@ export default {
           isFavorite: true,
         },
       ],
+      favoriteContacts: [],
       recentCalls: [],
       selectedContact: null,
     }
+  },
+  computed: {
+    isFavorite(contact) {
+      return this.favoriteContacts.includes(contact)
+    },
   },
 
   watch: {
     selectedContact(newValue) {
       this.$emit('contact-selected', newValue)
+      console.log('selectedContact APP', newValue)
     },
   },
 
@@ -63,11 +70,6 @@ export default {
       this.contacts.push({ ...contact, id: Date.now(), favorite: false })
     },
 
-    selectContact(contact) {
-      this.selectedContact = contact
-      console.log('work')
-    },
-
     toggleFavorite(contact) {
       if (this.favoriteContacts.includes(contact)) {
         this.favoriteContacts = this.favoriteContacts.filter(c => c !== contact)
@@ -76,10 +78,6 @@ export default {
         this.favoriteContacts.push(contact)
         contact.favorite = true
       }
-    },
-
-    isFavorite(contact) {
-      return this.favoriteContacts.includes(contact)
     },
   },
 }
@@ -92,23 +90,20 @@ export default {
     <!-- <WidgetSearch />
     <TabsSelector /> -->
     <div>
-      <FavoritesTab></FavoritesTab>
+      <FavoritesTab v-bind:contacts="favoriteContacts"></FavoritesTab>
       <RecentCallsTab v-bind:contacts="contacts"></RecentCallsTab>
       <ContactsTab
         v-bind:contacts="contacts"
-        @contact-selected="selectedContact = contact"
+        @contact-selected="selectedContact = $event"
       ></ContactsTab>
     </div>
   </div>
 
   <!-- Modal Structure  -->
 
-  <AddContactModal v-on:onAddContact="addNewContact"></AddContactModal>
-  <ContactDetailModal
-    v-bind:contacts="contacts"
-    v-on:onSelectContact="selectContact"
-  ></ContactDetailModal>
-  <SearchResultsModal></SearchResultsModal>
+  <ModalAddContact v-on:onAddContact="addNewContact"></ModalAddContact>
+  <ModalContactDetail :contact="selectedContact" />
+  <ModalSearchResults />
 </template>
 
 <style>
