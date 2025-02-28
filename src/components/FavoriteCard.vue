@@ -1,3 +1,8 @@
+<script>
+export default {
+  props: ['contact'],
+}
+</script>
 <template>
   <div class="card-panel teal lighten-2 waves-effect waves-light">
     <div class="center-align">
@@ -6,6 +11,8 @@
         >person</span
       >
     </div>
-    <span class="white-text">Петр Иванов</span>
+    <span class="white-text"
+      >{{ contact.firstName }} {{ contact.secondName }}</span
+    >
   </div>
 </template>

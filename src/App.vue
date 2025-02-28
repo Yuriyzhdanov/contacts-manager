@@ -33,17 +33,20 @@ export default {
           firstName: 'Petya',
           secondName: 'Vasilev',
           phone: '987654321',
-          isFavorite: true,
+          isFavorite: false,
         },
       ],
-      favoriteContacts: [],
       recentCalls: [],
-      selectedContact: null,
+      selectedContact: '',
     }
   },
   computed: {
-    isFavorite(contact) {
-      return this.favoriteContacts.includes(contact)
+    favoriteContacts() {
+      return this.contacts.filter(contact => contact.isFavorite)
+    },
+
+    isRecentCalls(call) {
+      return this.recentCalls.includes(call)
     },
   },
 
@@ -56,10 +59,7 @@ export default {
 
   methods: {
     validateContact(contact) {
-      if (!contact.firstName || !contact.phone) {
-        return false
-      }
-      return true
+      return contact.firstName && contact.phone
     },
 
     addNewContact(contact) {
@@ -71,13 +71,7 @@ export default {
     },
 
     toggleFavorite(contact) {
-      if (this.favoriteContacts.includes(contact)) {
-        this.favoriteContacts = this.favoriteContacts.filter(c => c !== contact)
-        contact.favorite = false
-      } else {
-        this.favoriteContacts.push(contact)
-        contact.favorite = true
-      }
+      contact.isFavorite = !contact.isFavorite
     },
   },
 }
