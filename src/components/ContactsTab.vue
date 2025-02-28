@@ -10,7 +10,7 @@ export default {
 
   props: ['contacts'],
 
-  emits: ['onSelectContact'],
+  emits: ['contact-selected'],
 }
 </script>
 
