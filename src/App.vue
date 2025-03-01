@@ -45,10 +45,6 @@ export default {
     favoriteContacts() {
       return this.contacts.filter(contact => contact.isFavorite)
     },
-
-    isRecentCalls() {
-      return this.contacts.filter(contact => contact.isRecentCalls)
-    },
   },
 
   watch: {
@@ -86,7 +82,7 @@ export default {
     <TabsSelector /> -->
     <div>
       <FavoritesTab v-bind:contacts="favoriteContacts" />
-      <RecentCallsTab v-bind:contacts="isRecentCalls" />
+      <RecentCallsTab />
       <ContactsTab
         v-bind:contacts="contacts"
         @contact-selected="selectedContact = $event"
