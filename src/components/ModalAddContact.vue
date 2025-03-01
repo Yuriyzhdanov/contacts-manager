@@ -13,7 +13,12 @@ export default {
   },
 
   methods: {
+    validateContact(contact) {
+      return contact.firstName && contact.phone
+    },
     handleAddContact() {
+      // if (!this.validateContact(contact)) {
+      // this.contacts.push({ ...contact, id: Date.now(), favorite: false })
       this.$emit('onAddContact', { ...this.newContact })
       this.newContact = {
         firstName: '',

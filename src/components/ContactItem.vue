@@ -2,26 +2,13 @@
 export default {
   props: ['contact'],
 
-  emits: ['contact-selected'],
-
-  data() {
-    return {
-      selectedContact: null,
-    }
-  },
-
-  watch: {
-    selectedContact(newValue) {
-      this.$emit('contact-selected', newValue)
-      console.log('ContactItem', newValue)
-    },
-  },
+  emits: ['selected-contact-changed'],
 }
 </script>
 
 <template>
   <li
-    v-on:click="selectedContact = contact"
+    v-on:click="$emit('selected-contact-changed', contact)"
     href="#modal2"
     class="contact modal-trigger collection-item transparent waves-effect"
   >

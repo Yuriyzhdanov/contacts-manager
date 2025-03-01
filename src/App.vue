@@ -27,56 +27,27 @@ export default {
           secondName: 'Petrov',
           phone: '123456789',
           isFavorite: true,
-          isRecentCalls: true,
         },
         {
           id: 42,
           firstName: 'Petya',
           secondName: 'Vasilev',
           phone: '987654321',
-          isRecentCalls: false,
+          isFavorite: true,
         },
       ],
-
-      selectedContact: {
-        id: 0,
-        firstName: '',
-        secondName: '',
-        phone: '',
-        isRecentCalls: false,
-      },
     }
   },
+
   computed: {
     favoriteContacts() {
       return this.contacts.filter(contact => contact.isFavorite)
     },
   },
 
-  watch: {
-    selectedContact(newValue) {
-      this.$emit('contact-selected', newValue)
-      console.log('selectedContact APP.vue', newValue)
-    },
-  },
+  watch: {},
 
-  methods: {
-    validateContact(contact) {
-      return contact.firstName && contact.phone
-    },
-
-    addNewContact(contact) {
-      if (!this.validateContact(contact)) {
-        console.log('заполните форму')
-        return
-      }
-      this.contacts.push({ ...contact, id: Date.now(), favorite: false })
-    },
-
-    toggleFavorite(contact) {
-      contact.isFavorite = !contact.isFavorite
-    },
-  },
+  methods: {},
 }
 </script>
 
@@ -84,8 +55,8 @@ export default {
   <div class="wrapper teal lighten-5">
     {{ contacts }}
     <NavigationBar />
-    <!-- <WidgetSearch />
-    <TabsSelector /> -->
+    <WidgetSearch />
+    <TabsSelector />
     <div>
       <FavoritesTab v-bind:contacts="favoriteContacts" />
       <RecentCallsTab />
@@ -98,8 +69,8 @@ export default {
 
   <!-- Modal Structure  -->
 
-  <ModalAddContact v-on:onAddContact="addNewContact" />
-  <ModalContactDetail :contact="selectedContact" />
+  <ModalAddContact v-on:on-add-contact="addNewContact" />
+  <ModalContactDetail :selected-contact="selectedContact" />
   <ModalSearchResults />
 </template>
 
