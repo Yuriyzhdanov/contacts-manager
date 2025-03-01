@@ -38,7 +38,13 @@ export default {
         },
       ],
 
-      selectedContact: '',
+      selectedContact: {
+        id: 0,
+        firstName: '',
+        secondName: '',
+        phone: '',
+        isRecentCalls: false,
+      },
     }
   },
   computed: {
@@ -50,7 +56,7 @@ export default {
   watch: {
     selectedContact(newValue) {
       this.$emit('contact-selected', newValue)
-      console.log('selectedContact APP', newValue)
+      console.log('selectedContact APP.vue', newValue)
     },
   },
 

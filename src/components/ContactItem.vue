@@ -13,6 +13,7 @@ export default {
   watch: {
     selectedContact(newValue) {
       this.$emit('contact-selected', newValue)
+      console.log('ContactItem', newValue)
     },
   },
 }
