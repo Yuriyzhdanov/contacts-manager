@@ -36,6 +36,7 @@ export default {
           isFavorite: true,
         },
       ],
+      selectedContact: null,
     }
   },
 
@@ -47,7 +48,16 @@ export default {
 
   watch: {},
 
-  methods: {},
+  methods: {
+    addNewContact(contact) {
+      const newContact = {
+        ...contact,
+        id: Date.now(),
+        isFavorite: false,
+      }
+      this.contacts.push(newContact)
+    },
+  },
 }
 </script>
 

@@ -1,6 +1,6 @@
 <script>
 export default {
-  emits: ['onAddContact'],
+  emits: ['on-add-contact'],
 
   data() {
     return {
@@ -19,7 +19,7 @@ export default {
     handleAddContact() {
       // if (!this.validateContact(contact)) {
       // this.contacts.push({ ...contact, id: Date.now(), favorite: false })
-      this.$emit('onAddContact', { ...this.newContact })
+      this.$emit('on-add-contact', { ...this.newContact })
       this.newContact = {
         firstName: '',
         secondName: '',
@@ -72,28 +72,6 @@ export default {
               <label for="phone">Телефон</label>
             </div>
           </div>
-          <!-- <div class="row">
-              <div class="input-field col s12">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autocomplete="new-password"
-                />
-                <label for="email">E-mail</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input
-                  id="city"
-                  name="city"
-                  type="text"
-                  autocomplete="new-password"
-                />
-                <label for="city">Город</label>
-              </div>
-            </div> -->
           <div class="row">
             <div class="col s12 center-align wrap-form-buttons">
               <div class="input-reset">
