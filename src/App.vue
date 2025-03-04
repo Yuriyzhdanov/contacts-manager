@@ -6,6 +6,7 @@ import TabContacts from './components/TabContacts.vue'
 import ModalAddContact from './components/ModalAddContact.vue'
 import ModalContactDetail from './components/ModalContactDetail.vue'
 import ModalSearchResults from './components/ModalSearchResults.vue'
+import WidgetSearch from './components/WidgetSearch.vue'
 
 export default {
   components: {
@@ -16,6 +17,7 @@ export default {
     ModalAddContact,
     ModalContactDetail,
     ModalSearchResults,
+    WidgetSearch,
   },
 
   data() {
@@ -65,8 +67,7 @@ export default {
   <div class="wrapper teal lighten-5">
     {{ contacts }}
     <NavigationBar />
-    <WidgetSearch />
-    <TabsSelector />
+    <WidgetSearch v-bind:contacts="contacts" />
     <div>
       <TabFavorites v-bind:contacts="favoriteContacts" />
       <TabRecentCalls />
