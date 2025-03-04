@@ -65,7 +65,6 @@ export default {
   <div class="wrapper teal lighten-5">
     {{ contacts }}
     <NavigationBar />
-    <!-- <WidgetSearch v-bind:contacts="contacts" /> -->
     <div>
       <TabFavorites v-bind:contacts="favoriteContacts" />
       <TabRecentCalls />
@@ -79,7 +78,7 @@ export default {
   <!-- Modal Structure  -->
 
   <ModalAddContact v-on:on-add-contact="addNewContact" />
-  <ModalContactDetail />
+  <ModalContactDetail v-bind:selected-contact="selectedContact" />
   <ModalSearchResults v-bind:contacts="contacts" />
 </template>
 :selected-contact="selectedContact"
