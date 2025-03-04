@@ -10,7 +10,7 @@ export default {
 
   props: ['contacts'],
 
-  emits: ['contacts-changed'],
+  emits: ['selected-contact-changed'],
 
   methods: {
     // addContact(contact) {
@@ -34,4 +34,3 @@ export default {
     <UiContactAddButton></UiContactAddButton>
   </div>
 </template>
-<!-- @selected-contact-changed="addContact" -->
