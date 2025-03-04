@@ -81,7 +81,6 @@ export default {
   <ModalContactDetail v-bind:selected-contact="selectedContact" />
   <ModalSearchResults v-bind:contacts="contacts" />
 </template>
-:selected-contact="selectedContact"
 
 <style>
 #app {
