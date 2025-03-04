@@ -1,8 +1,8 @@
 <script>
 import NavigationBar from './components/NavigationBar.vue'
-import FavoritesTab from './components/FavoritesTab.vue'
-import RecentCallsTab from './components/RecentCallsTab.vue'
-import ContactsTab from './components/ContactsTab.vue'
+import TabFavorites from './components/TabFavorites.vue'
+import TabRecentCalls from './components/TabRecentCalls.vue'
+import TabContacts from './components/TabContacts.vue'
 import ModalAddContact from './components/ModalAddContact.vue'
 import ModalContactDetail from './components/ModalContactDetail.vue'
 import ModalSearchResults from './components/ModalSearchResults.vue'
@@ -10,9 +10,9 @@ import ModalSearchResults from './components/ModalSearchResults.vue'
 export default {
   components: {
     NavigationBar,
-    FavoritesTab,
-    RecentCallsTab,
-    ContactsTab,
+    TabFavorites,
+    TabRecentCalls,
+    TabContacts,
     ModalAddContact,
     ModalContactDetail,
     ModalSearchResults,
@@ -55,12 +55,12 @@ export default {
   <div class="wrapper teal lighten-5">
     {{ contacts }}
     <NavigationBar />
-    <WidgetSearch />
-    <TabsSelector />
+    <!-- <WidgetSearch />
+    <TabsSelector /> -->
     <div>
-      <FavoritesTab v-bind:contacts="favoriteContacts" />
-      <RecentCallsTab />
-      <ContactsTab
+      <TabFavorites v-bind:contacts="favoriteContacts" />
+      <TabRecentCalls />
+      <TabContacts
         v-bind:contacts="contacts"
         @contact-selected="selectedContact = $event"
       />

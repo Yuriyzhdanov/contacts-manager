@@ -19,7 +19,7 @@ export default {
           :key="contact.id"
           class="favorite col s6 m4 l3 xl2"
         >
-          <FavoriteCard :contact="contact"></FavoriteCard>
+          <FavoriteCard :contact="contact" />
         </div>
       </div>
     </div>
