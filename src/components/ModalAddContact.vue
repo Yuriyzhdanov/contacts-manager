@@ -19,7 +19,6 @@ export default {
       return contact.firstName && contact.phone
     },
     handleAddContact() {
-      console.log('Adding contact: handleAddContact', this.newContact)
       // if (!this.validateContact(contact)) {
       // this.contacts.push({ ...contact, id: Date.now(), favorite: false })
       this.$emit('on-add-contact', { ...this.newContact })
