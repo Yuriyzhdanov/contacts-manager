@@ -1,5 +1,7 @@
 <script>
 export default {
+  props: ['contacts'],
+
   emits: ['on-add-contact'],
 
   data() {
