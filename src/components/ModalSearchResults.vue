@@ -22,9 +22,12 @@ export default {
     <div class="modal-content">
       <div class="wrap-content">
         <h5 class="header">Найдено: {{ contactsCount }}</h5>
+        {{ filteredContacts }}
+        {{ searchQuery }}
+        {{ contacts }}
         <ul class="collection">
           <li
-            v-for="contact in contacts"
+            v-for="contact in filteredContacts"
             :key="contact.id"
             class="collection-item avatar"
           >

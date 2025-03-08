@@ -56,17 +56,13 @@ export default {
       }
       this.contacts.push(newContact)
     },
-
-    updateSearchQuery(query) {
-      this.searchQuery = query
-    },
   },
 }
 </script>
 <template>
   <div class="wrapper teal lighten-5">
     <!-- {{ contacts }} -->
-    <NavigationBar @on-search-query="updateSearchQuery = $event" />
+    <NavigationBar @on-search-query="searchQuery = $event" />
     <div>
       <TabFavorites :contacts="favoriteContacts" />
       <TabRecentCalls />
