@@ -50,6 +50,7 @@ export default {
 
   methods: {
     addNewContact(contact) {
+      console.log('addNewContact Received contact:', contact)
       const newContact = {
         ...contact,
         id: Date.now(),
@@ -66,10 +67,10 @@ export default {
     {{ contacts }}
     <NavigationBar />
     <div>
-      <TabFavorites v-bind:contacts="favoriteContacts" />
+      <TabFavorites :contacts="favoriteContacts" />
       <TabRecentCalls />
       <TabContacts
-        v-bind:contacts="contacts"
+        :contacts="contacts"
         @selected-contact-changed="selectedContact = $event"
       />
     </div>
@@ -77,9 +78,9 @@ export default {
 
   <!-- Modal Structure  -->
 
-  <ModalAddContact v-on:on-add-contact="addNewContact" />
-  <ModalContactDetail v-bind:selected-contact="selectedContact" />
-  <ModalSearchResults v-bind:contacts="contacts" />
+  <ModalAddContact :on-add-contact="addNewContact" />
+  <ModalContactDetail :selected-contact="selectedContact" />
+  <ModalSearchResults :contacts="contacts" />
 </template>
 
 <style>
