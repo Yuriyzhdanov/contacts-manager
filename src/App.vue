@@ -50,7 +50,6 @@ export default {
 
   methods: {
     addNewContact(contact) {
-      console.log('addNewContact Received contact:', contact)
       const newContact = {
         ...contact,
         id: Date.now(),
