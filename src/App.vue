@@ -78,7 +78,7 @@ export default {
 
   <!-- Modal Structure  -->
 
-  <ModalAddContact :on-add-contact="addNewContact" />
+  <ModalAddContact @on-add-contact="addNewContact" />
   <ModalContactDetail :selected-contact="selectedContact" />
   <ModalSearchResults :contacts="contacts" />
 </template>
