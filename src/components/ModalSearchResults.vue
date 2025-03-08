@@ -1,10 +1,18 @@
 <script>
 export default {
-  props: ['contacts'],
+  props: ['contacts', 'searchQuery'],
 
   computed: {
     contactsCount() {
       return this.contacts.length
+    },
+
+    filteredContacts() {
+      return this.contacts.filter(contact =>
+        [contact.firstName, contact.secondName, contact.phone].includes(
+          this.searchQuery
+        )
+      )
     },
   },
 }
@@ -16,7 +24,7 @@ export default {
         <h5 class="header">Найдено: {{ contactsCount }}</h5>
         <ul class="collection">
           <li
-            v-for="contact of contacts"
+            v-for="contact in contacts"
             :key="contact.id"
             class="collection-item avatar"
           >

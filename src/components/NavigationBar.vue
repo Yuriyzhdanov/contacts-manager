@@ -1,9 +1,28 @@
+<script>
+export default {
+  emits: ['on-search-query'],
+
+  data() {
+    return {
+      searchQuery: '',
+    }
+  },
+
+  watch: {
+    searchQuery(newQuery) {
+      this.$emit('on-search-query', newQuery)
+    },
+  },
+}
+</script>
+
 <template>
   <nav class="nav-extended teal">
     <div class="nav-wrapper">
       <form>
         <div class="input-field">
           <input
+            v-model="searchQuery"
             class="teal-text text-lighten-5"
             id="search"
             type="search"

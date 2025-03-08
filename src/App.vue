@@ -37,6 +37,7 @@ export default {
         },
       ],
       selectedContact: null,
+      searchQuery: '',
     }
   },
 
@@ -45,8 +46,6 @@ export default {
       return this.contacts.filter(contact => contact.isFavorite)
     },
   },
-
-  watch: {},
 
   methods: {
     addNewContact(contact) {
@@ -57,14 +56,17 @@ export default {
       }
       this.contacts.push(newContact)
     },
+
+    updateSearchQuery(query) {
+      this.searchQuery = query
+    },
   },
 }
 </script>
-
 <template>
   <div class="wrapper teal lighten-5">
-    {{ contacts }}
-    <NavigationBar />
+    <!-- {{ contacts }} -->
+    <NavigationBar @on-search-query="updateSearchQuery = $event" />
     <div>
       <TabFavorites :contacts="favoriteContacts" />
       <TabRecentCalls />
@@ -79,7 +81,7 @@ export default {
 
   <ModalAddContact @on-add-contact="addNewContact" />
   <ModalContactDetail :selected-contact="selectedContact" />
-  <ModalSearchResults :contacts="contacts" />
+  <ModalSearchResults :contacts="contacts" :search-query="searchQuery" />
 </template>
 
 <style>
