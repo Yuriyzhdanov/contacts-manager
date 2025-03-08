@@ -36,7 +36,7 @@ export default {
                   >
                     <i class="material-icons circle teal darken-3">person</i>
                     <span class="title"
-                      ><b>{{ contact?.phone }}</b></span
+                      ><b>{{ selectedContact?.phone }}</b></span
                     >
                     <p>
                       <i>Позавчера</i>
