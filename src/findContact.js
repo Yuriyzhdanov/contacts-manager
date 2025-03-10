@@ -1,3 +1,4 @@
+export function findContactsByQuery(q, contacts) {
   q = q ? q.toLowerCase().trim() : ''
 
   if (q === '') return []
@@ -18,7 +19,6 @@
       }
     })
 
-    matchCount
     return { contact, matchCount }
   })
 
@@ -28,7 +28,3 @@
     .filter(item => item.matchCount === maxMatches && item.matchCount > 0)
     .map(item => item.contact)
 }
-
-const results = findContactsByQuery('   ирина   иринова   3  ')
-
-console.log(results)
