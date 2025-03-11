@@ -1,12 +1,20 @@
 <script>
 export default {
   props: ['selectedContact'],
+
   emits: ['on-edit-contact'],
 
   methods: {
     onEditContact() {
       this.$emit('on-edit-contact', this.selectedContact)
     },
+    onSaveContact() {
+      console.log('save')
+    },
+    onRemoveContact() {
+      console.log('remove')
+    },
+  },
 }
 </script>
 
@@ -28,6 +36,11 @@ export default {
                 @click="onEditContact"
                 class="modal-close smaterial-symbols-outlined"
                 >edit</span
+              >
+              <span
+                @click="onRemoveContact"
+                class="modal-close material-symbols-outlined"
+                >delete</span
               >
             </div>
           </div>
