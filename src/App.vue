@@ -70,6 +70,23 @@ export default {
       }
       this.contacts.push(newContact)
     },
+
+    editContact(contact) {
+      const index = this.contacts.findIndex(c => c.id === contact.id)
+      if (index !== -1) {
+        const updatedContact = {
+          ...this.contacts[index],
+          firstName: 'John',
+          secondName: 'Smith',
+          phone: '999999999',
+        }
+        this.contacts[index] = updatedContact
+
+        if (this.selectedContact?.id === contact.id) {
+          this.selectedContact = { ...updatedContact }
+        }
+      }
+    },
   },
 }
 </script>
@@ -90,7 +107,10 @@ export default {
   <!-- Modal Structure  -->
 
   <ModalAddContact @on-add-contact="addNewContact" />
-  <ModalContactDetail :selected-contact="selectedContact" />
+  <ModalContactDetail
+    @on-edit-contact="editContact"
+    :selected-contact="selectedContact"
+  />
   <ModalSearchResults :contacts="contacts" :search-query="searchQuery" />
 </template>
 
