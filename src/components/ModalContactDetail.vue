@@ -9,6 +9,10 @@ export default {
       this.$emit('on-add-favorite', this.selectedContact)
     },
 
+    onRemoveFromFavorite() {
+      this.$emit('on-remove-favorite', this.selectedContact)
+    },
+
     onEditContact() {
       this.$emit('on-edit-contact', this.selectedContact)
     },
@@ -32,11 +36,16 @@ export default {
               <i class="material-symbols-outlined person">person</i>
             </div>
             <div class="col s6 right-align teal-text text-lighten-5">
+              <span
+                @click="onRemoveFromFavorite"
+                class="modal-close material-symbols-outlined non-fill"
+                >star</span
+              >
+              <span
                 @click="onAddToFavorite"
                 class="modal-close material-symbols-outlined"
                 >star</span
               >
-              <span class="modal-close material-symbols-outlined">star</span>
               <span
                 @click="onEditContact"
                 class="modal-close smaterial-symbols-outlined"

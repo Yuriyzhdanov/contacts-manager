@@ -70,8 +70,13 @@ export default {
       }
       this.contacts.push(newContact)
     },
+
     onAddToFavorite() {
       this.selectedContact.isFavorite = true
+    },
+
+    onRemoveFromFavorite() {
+      this.selectedContact.isFavorite = false
     },
 
     editContact(contact) {
@@ -84,6 +89,7 @@ export default {
           phone: '999999999',
         }
         this.contacts[index] = updatedContact
+        console.log('sc', this.selectedContact)
 
         if (this.selectedContact?.id === contact.id) {
           this.selectedContact = { ...updatedContact }
@@ -113,6 +119,7 @@ export default {
   <ModalContactDetail
     @on-edit-contact="editContact"
     @on-add-favorite="onAddToFavorite"
+    @on-remove-favorite="onRemoveFromFavorite"
     :selected-contact="selectedContact"
   />
   <ModalSearchResults
