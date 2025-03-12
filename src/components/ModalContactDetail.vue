@@ -2,9 +2,13 @@
 export default {
   props: ['selectedContact'],
 
-  emits: ['on-edit-contact'],
+  emits: ['on-edit-contact', 'on-add-favorite', 'on-remove-favorite'],
 
   methods: {
+    onAddToFavorite() {
+      this.$emit('on-add-favorite', this.selectedContact)
+    },
+
     onEditContact() {
       this.$emit('on-edit-contact', this.selectedContact)
     },
@@ -28,7 +32,8 @@ export default {
               <i class="material-symbols-outlined person">person</i>
             </div>
             <div class="col s6 right-align teal-text text-lighten-5">
-              <span class="modal-close material-symbols-outlined non-fill"
+                @click="onAddToFavorite"
+                class="modal-close material-symbols-outlined"
                 >star</span
               >
               <span class="modal-close material-symbols-outlined">star</span>

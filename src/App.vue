@@ -70,6 +70,9 @@ export default {
       }
       this.contacts.push(newContact)
     },
+    onAddToFavorite() {
+      this.selectedContact.isFavorite = true
+    },
 
     editContact(contact) {
       const index = this.contacts.findIndex(c => c.id === contact.id)
@@ -109,6 +112,7 @@ export default {
   <ModalAddContact @on-add-contact="addNewContact" />
   <ModalContactDetail
     @on-edit-contact="editContact"
+    @on-add-favorite="onAddToFavorite"
     :selected-contact="selectedContact"
   />
   <ModalSearchResults
