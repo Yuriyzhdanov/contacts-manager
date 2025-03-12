@@ -45,7 +45,7 @@ export default {
             </div>
           </div>
           <h5 class="center-align white-text">
-            {{ selectedContact?.firstName }} {{ selectedContact?.secondName }}
+            {{ selectedContact?.firstName }} {{ selectedContact?.lastName }}
           </h5>
         </div>
         <div class="bottom">

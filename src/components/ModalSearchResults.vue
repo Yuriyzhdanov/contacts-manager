@@ -31,7 +31,7 @@ export default {
           >
             <i class="material-icons circle green">assessment</i>
             <span class="title">{{ contact.firstName }}</span>
-            <p>{{ contact.secondName }}</p>
+            <p>{{ contact.lastName }}</p>
             <a href="#!" class="secondary-content">
               <i class="material-icons">{{ contact.phone }}</i>
             </a>

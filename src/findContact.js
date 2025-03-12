@@ -1,30 +1,39 @@
-export function findContactsByQuery(q, contacts) {
-  q = q ? q.toLowerCase().trim() : ''
+/**
+ * @param {string} searchQuery
+ * @param {Array} contactsList
+ * @returns {Array}
+ */
+export function searchContacts(searchQuery, contactsList) {
+  if (
+    !searchQuery ||
+    typeof searchQuery !== 'string' ||
+    !Array.isArray(contactsList)
+  ) {
+    return []
+  }
 
-  if (q === '') return []
+  const normalizedQuery = searchQuery.toLowerCase().trim()
+  const queryWords = normalizedQuery.split(' ').filter(word => word)
 
-  const queries = q.split(' ').filter(Boolean)
+  const matchedContacts = []
 
-  const contactMatches = contacts.map(contact => {
-    let matchCount = 0
+  contactsList.forEach(contact => {
+    let relevanceScore = 0
 
-    queries.forEach(query => {
+    queryWords.forEach(word => {
       if (
-        (contact.phone && contact.phone.toLowerCase().includes(query)) ||
-        (contact.firstName &&
-          contact.firstName.toLowerCase().includes(query)) ||
-        (contact.lastName && contact.lastName.toLowerCase().includes(query))
+        (contact.phone && contact.phone.toLowerCase().includes(word)) ||
+        (contact.firstName && contact.firstName.toLowerCase().includes(word)) ||
+        (contact.lastName && contact.lastName.toLowerCase().includes(word))
       ) {
-        matchCount++
+        relevanceScore++
       }
     })
 
-    return { contact, matchCount }
+    if (relevanceScore > 0) {
+      matchedContacts.push({ ...contact, relevanceScore })
+    }
   })
 
-  const maxMatches = Math.max(...contactMatches.map(item => item.matchCount), 0)
-
-  return contactMatches
-    .filter(item => item.matchCount === maxMatches && item.matchCount > 0)
-    .map(item => item.contact)
+  return matchedContacts.sort((a, b) => b.relevanceScore - a.relevanceScore)
 }

@@ -8,7 +8,7 @@ export default {
     return {
       newContact: {
         firstName: '',
-        secondName: '',
+        lastName: '',
         phone: '',
       },
     }
@@ -24,7 +24,7 @@ export default {
       this.$emit('on-add-contact', { ...this.newContact })
       this.newContact = {
         firstName: '',
-        secondName: '',
+        lastName: '',
         phone: '',
       }
     },
@@ -52,13 +52,13 @@ export default {
           <div class="row">
             <div class="input-field col s12">
               <input
-                v-model="newContact.secondName"
-                id="secondName"
-                name="secondName"
+                v-model="newContact.lastName"
+                id="lastName"
+                name="lastName"
                 type="text"
                 autocomplete="new-password"
               />
-              <label for="secondName">Фамилия</label>
+              <label for="lastName">Фамилия</label>
             </div>
           </div>
           <div class="row">

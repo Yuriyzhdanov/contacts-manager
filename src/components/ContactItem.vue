@@ -22,7 +22,7 @@ export default {
         </div>
         <div class="col s4">
           <span class=""
-            ><b>{{ contact.firstName + ' ' + contact.secondName }}</b></span
+            ><b>{{ contact.firstName + ' ' + contact.lastName }}</b></span
           >
         </div>
         <div class="col s4">

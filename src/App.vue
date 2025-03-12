@@ -24,28 +24,28 @@ export default {
         {
           id: 33,
           firstName: 'Vasya',
-          secondName: 'Petrov',
+          lastName: 'Petrov',
           phone: '123456789',
           isFavorite: true,
         },
         {
           id: 42,
           firstName: 'Petya',
-          secondName: 'Vasilev',
+          lastName: 'Vasilev',
           phone: '987654321',
           isFavorite: true,
         },
         {
           id: 43,
           firstName: 'Irina',
-          secondName: 'Irinova',
+          lastName: 'Irinova',
           phone: '123',
           isFavorite: false,
         },
         {
           id: 44,
           firstName: 'Irina',
-          secondName: 'Irinovna',
+          lastName: 'Irinovna',
           phone: '123',
           isFavorite: false,
         },
@@ -77,7 +77,7 @@ export default {
         const updatedContact = {
           ...this.contacts[index],
           firstName: 'John',
-          secondName: 'Smith',
+          lastName: 'Smith',
           phone: '999999999',
         }
         this.contacts[index] = updatedContact

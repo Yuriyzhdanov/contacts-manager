@@ -12,7 +12,7 @@ export default {
       >
     </div>
     <span class="white-text"
-      >{{ contact.firstName }} {{ contact.secondName }}</span
+      >{{ contact.firstName }} {{ contact.lastName }}</span
     >
   </div>
 </template>
