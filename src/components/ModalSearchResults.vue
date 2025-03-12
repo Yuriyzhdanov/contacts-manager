@@ -6,7 +6,7 @@ export default {
 
   computed: {
     contactsCount() {
-      return this.contacts.length
+      return this.filteredContacts.length
     },
 
     filteredContacts() {
