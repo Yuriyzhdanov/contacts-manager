@@ -1,5 +1,5 @@
 <script>
-import { findContactsByQuery } from '@/findContact'
+import { searchContacts } from '../findContact.js'
 
 export default {
   props: ['contacts', 'searchQuery'],
@@ -10,7 +10,7 @@ export default {
     },
 
     filteredContacts() {
-      return findContactsByQuery(this.searchQuery, this.contacts)
+      return searchContacts(this.searchQuery, this.contacts)
     },
   },
 }
