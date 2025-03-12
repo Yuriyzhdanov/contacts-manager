@@ -111,7 +111,11 @@ export default {
     @on-edit-contact="editContact"
     :selected-contact="selectedContact"
   />
-  <ModalSearchResults :contacts="contacts" :search-query="searchQuery" />
+  <ModalSearchResults
+    v-if="contacts"
+    :contacts="contacts"
+    :search-query="searchQuery"
+  />
 </template>
 
 <style>
