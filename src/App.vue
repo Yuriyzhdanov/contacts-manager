@@ -84,9 +84,7 @@ export default {
     },
 
     onRemoveContact(contact) {
-      console.log('contact', contact)
-
-      const index = contacts.findIndex(c => c.id === contact.id)
+      const index = this.contacts.findIndex(c => c.id === contact.id)
       if (index !== -1) {
         return this.contacts.splice(index, 1)
       }
