@@ -40,18 +40,20 @@ export default {
             </div>
             <div class="col s6 right-align teal-text text-lighten-5">
               <span
+                v-if="selectedContact?.isFavorite"
                 @click="onRemoveFromFavorite"
                 class="modal-close material-symbols-outlined non-fill"
                 >star</span
               >
               <span
+                v-else
                 @click="onAddToFavorite"
                 class="modal-close material-symbols-outlined"
                 >star</span
               >
               <span
                 @click="onEditContact"
-                class="modal-close smaterial-symbols-outlined"
+                class="modal-close material-symbols-outlined"
                 >edit</span
               >
               <span
