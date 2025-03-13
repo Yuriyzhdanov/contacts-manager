@@ -72,11 +72,16 @@ export default {
     },
 
     onAddToFavorite() {
-      this.selectedContact.isFavorite = true
+      if (this.selectedContact) {
+        this.selectedContact.isFavorite = true
+      }
     },
 
     onRemoveFromFavorite() {
-      this.selectedContact.isFavorite = false
+      if (this.selectedContact) {
+        this.selectedContact.isFavorite = false
+      }
+    },
     },
 
     editContact(contact) {
