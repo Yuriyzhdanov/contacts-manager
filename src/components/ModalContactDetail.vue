@@ -2,7 +2,12 @@
 export default {
   props: ['selectedContact'],
 
-  emits: ['on-edit-contact', 'on-add-favorite', 'on-remove-favorite'],
+  emits: [
+    'on-edit-contact',
+    'on-add-favorite',
+    'on-remove-favorite',
+    'on-remove-contact',
+  ],
 
   methods: {
     onAddToFavorite() {
@@ -16,11 +21,9 @@ export default {
     onEditContact() {
       this.$emit('on-edit-contact', this.selectedContact)
     },
-    onSaveContact() {
-      console.log('save')
-    },
+
     onRemoveContact() {
-      console.log('remove')
+      this.$emit('on-remove-contact', this.selectedContact)
     },
   },
 }

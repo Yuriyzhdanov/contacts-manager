@@ -82,6 +82,15 @@ export default {
         this.selectedContact.isFavorite = false
       }
     },
+
+    onRemoveContact(contact) {
+      console.log('contact', contact)
+
+      const index = contacts.findIndex(c => c.id === contact.id)
+      if (index !== -1) {
+        return this.contacts.splice(index, 1)
+      }
+      return []
     },
 
     editContact(contact) {
@@ -125,6 +134,7 @@ export default {
     @on-edit-contact="editContact"
     @on-add-favorite="onAddToFavorite"
     @on-remove-favorite="onRemoveFromFavorite"
+    @on-remove-contact="onRemoveContact"
     :selected-contact="selectedContact"
   />
   <ModalSearchResults
