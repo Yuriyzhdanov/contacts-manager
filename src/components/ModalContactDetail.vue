@@ -1,29 +1,20 @@
 <script>
 export default {
-  props: ['selectedContact'],
+  props: ['currentContact'],
 
-  emits: [
-    'on-edit-contact',
-    'on-add-favorite',
-    'on-remove-favorite',
-    'on-remove-contact',
-  ],
+  emits: ['contact-updated'],
 
   methods: {
-    onAddToFavorite() {
-      this.$emit('on-add-favorite', this.selectedContact)
-    },
-
     onRemoveFromFavorite() {
-      this.$emit('on-remove-favorite', this.selectedContact)
+      this.$emit('on-remove-favorite', this.currentContact)
     },
 
     onEditContact() {
-      this.$emit('on-edit-contact', this.selectedContact)
+      this.$emit('on-edit-contact', this.currentContact)
     },
 
     onRemoveContact() {
-      this.$emit('on-remove-contact', this.selectedContact)
+      this.$emit('on-remove-contact', this.currentContact)
     },
   },
 }
@@ -40,14 +31,19 @@ export default {
             </div>
             <div class="col s6 right-align teal-text text-lighten-5">
               <span
-                v-if="selectedContact?.isFavorite"
+                v-if="currentContact?.isFavorite"
                 @click="onRemoveFromFavorite"
                 class="modal-close material-symbols-outlined non-fill"
                 >star</span
               >
               <span
                 v-else
-                @click="onAddToFavorite"
+                @click="
+                  $emit('contact-updated', {
+                    ...currentContact,
+                    isFavorite: true,
+                  })
+                "
                 class="modal-close material-symbols-outlined"
                 >star</span
               >
@@ -64,7 +60,7 @@ export default {
             </div>
           </div>
           <h5 class="center-align white-text">
-            {{ selectedContact?.firstName }} {{ selectedContact?.lastName }}
+            {{ currentContact?.firstName }} {{ currentContact?.lastName }}
           </h5>
         </div>
         <div class="bottom">
@@ -77,7 +73,7 @@ export default {
                   >
                     <i class="material-icons circle teal darken-3">person</i>
                     <span class="title"
-                      ><b>{{ selectedContact?.phone }}</b></span
+                      ><b>{{ currentContact?.phone }}</b></span
                     >
                     <p>
                       <i>Позавчера</i>

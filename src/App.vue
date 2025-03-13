@@ -20,6 +20,14 @@ export default {
 
   data() {
     return {
+      currentContact: {
+        id: 0,
+        firstName: '',
+        lastName: '',
+        phone: '',
+        isFavorite: false,
+      },
+
       contacts: [
         {
           id: 33,
@@ -84,29 +92,18 @@ export default {
     },
 
     onRemoveContact(contact) {
-      const index = this.contacts.findIndex(c => c.id === contact.id)
-      if (index !== -1) {
-        return this.contacts.splice(index, 1)
-      }
-      return []
+      this.contacts = this.contacts.filter(c => c.id !== contact.id)
+
+      // const index = this.contacts.findIndex(c => c.id === contact.id)
+      // if (index !== -1) {
+      //   return this.contacts.splice(index, 1)
+      // }
+      // return []
     },
 
-    editContact(contact) {
-      const index = this.contacts.findIndex(c => c.id === contact.id)
-      if (index !== -1) {
-        const updatedContact = {
-          ...this.contacts[index],
-          firstName: 'John',
-          lastName: 'Smith',
-          phone: '999999999',
-        }
-        this.contacts[index] = updatedContact
-        console.log('sc', this.selectedContact)
-
-        if (this.selectedContact?.id === contact.id) {
-          this.selectedContact = { ...updatedContact }
-        }
-      }
+    updateContact(contactData) {
+      const contact = this.contacts.find(c => c.id === contactData.id)
+      Object.assign(contact, contactData)
     },
   },
 }
@@ -129,7 +126,9 @@ export default {
 
   <ModalAddContact @on-add-contact="addNewContact" />
   <ModalContactDetail
-    @on-edit-contact="editContact"
+    :current-contact="currentContact"
+    @contact-updated=""
+    @on-edit-contact="selectedContact = $event"
     @on-add-favorite="onAddToFavorite"
     @on-remove-favorite="onRemoveFromFavorite"
     @on-remove-contact="onRemoveContact"

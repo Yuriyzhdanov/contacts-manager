@@ -28,6 +28,24 @@ export default {
         phone: '',
       }
     },
+
+    editContact(contact) {
+      const index = this.contacts.findIndex(c => c.id === contact.id)
+      if (index !== -1) {
+        const updatedContact = {
+          ...this.contacts[index],
+          firstName: 'John',
+          lastName: 'Smith',
+          phone: '999999999',
+        }
+        this.contacts[index] = updatedContact
+        console.log('sc', this.selectedContact)
+
+        if (this.selectedContact?.id === contact.id) {
+          this.selectedContact = { ...updatedContact }
+        }
+      }
+    },
   },
 }
 </script>
