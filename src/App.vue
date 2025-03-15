@@ -58,7 +58,6 @@ export default {
           isFavorite: false,
         },
       ],
-      selectedContact: null,
       searchQuery: '',
     }
   },
@@ -117,22 +116,22 @@ export default {
       <TabRecentCalls />
       <TabContacts
         :contacts="contacts"
-        @selected-contact-changed="selectedContact = $event"
+        @selected-contact-changed="currentContact = $event"
       />
     </div>
   </div>
 
   <!-- Modal Structure  -->
 
-  <ModalAddContact @on-add-contact="addNewContact" />
+  <ModalAddContact
+    :current-contact="currentContact"
+    @contact-edited="Object.assign(currentContact, $event)"
+    @contact-added=""
+  />
   <ModalContactDetail
     :current-contact="currentContact"
-    @contact-updated=""
-    @on-edit-contact="selectedContact = $event"
-    @on-add-favorite="onAddToFavorite"
-    @on-remove-favorite="onRemoveFromFavorite"
-    @on-remove-contact="onRemoveContact"
-    :selected-contact="selectedContact"
+    @favorite-updated="currentContact.isFavorite = $event"
+    @contact-removed="contacts = contacts.filter(c => c.id !== $event.id)"
   />
   <ModalSearchResults
     v-if="contacts"

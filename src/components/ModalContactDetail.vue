@@ -2,21 +2,7 @@
 export default {
   props: ['currentContact'],
 
-  emits: ['contact-updated'],
-
-  methods: {
-    onRemoveFromFavorite() {
-      this.$emit('on-remove-favorite', this.currentContact)
-    },
-
-    onEditContact() {
-      this.$emit('on-edit-contact', this.currentContact)
-    },
-
-    onRemoveContact() {
-      this.$emit('on-remove-contact', this.currentContact)
-    },
-  },
+  emits: ['contact-removed', 'favorite-updated'],
 }
 </script>
 
@@ -31,29 +17,21 @@ export default {
             </div>
             <div class="col s6 right-align teal-text text-lighten-5">
               <span
-                v-if="currentContact?.isFavorite"
-                @click="onRemoveFromFavorite"
-                class="modal-close material-symbols-outlined non-fill"
-                >star</span
-              >
-              <span
-                v-else
-                @click="
-                  $emit('contact-updated', {
-                    ...currentContact,
-                    isFavorite: true,
-                  })
-                "
+                @click="$emit('favorite-updated', !currentContact?.isFavorite)"
                 class="modal-close material-symbols-outlined"
+                :class="{ 'non-fill': !currentContact?.isFavorite }"
                 >star</span
               >
+
               <span
                 @click="onEditContact"
-                class="modal-close material-symbols-outlined"
+                href="#modal1"
+                class="modal-close modal-trigger material-symbols-outlined"
                 >edit</span
               >
+
               <span
-                @click="onRemoveContact"
+                @click="$emit('contact-removed', currentContact)"
                 class="modal-close material-symbols-outlined"
                 >delete</span
               >

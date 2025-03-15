@@ -1,50 +1,28 @@
 <script>
 export default {
-  props: ['contacts'],
+  props: ['currentContact'],
 
-  emits: ['on-add-contact'],
+  emits: ['contact-edited'],
 
   data() {
     return {
-      newContact: {
-        firstName: '',
-        lastName: '',
-        phone: '',
-      },
+      editableContact: {},
     }
+  },
+
+  watch: {
+    currentContact: {
+      deep: true,
+      handler(newValue) {
+        console.log('>>', newValue)
+        this.editableContact = { ...newValue }
+      },
+    },
   },
 
   methods: {
     validateContact(contact) {
       return contact.firstName && contact.phone
-    },
-    handleAddContact() {
-      // if (!this.validateContact(contact)) {
-      // this.contacts.push({ ...contact, id: Date.now(), favorite: false })
-      this.$emit('on-add-contact', { ...this.newContact })
-      this.newContact = {
-        firstName: '',
-        lastName: '',
-        phone: '',
-      }
-    },
-
-    editContact(contact) {
-      const index = this.contacts.findIndex(c => c.id === contact.id)
-      if (index !== -1) {
-        const updatedContact = {
-          ...this.contacts[index],
-          firstName: 'John',
-          lastName: 'Smith',
-          phone: '999999999',
-        }
-        this.contacts[index] = updatedContact
-        console.log('sc', this.selectedContact)
-
-        if (this.selectedContact?.id === contact.id) {
-          this.selectedContact = { ...updatedContact }
-        }
-      }
     },
   },
 }
@@ -58,7 +36,7 @@ export default {
           <div class="row">
             <div class="input-field col s12">
               <input
-                v-model="newContact.firstName"
+                v-model="editableContact.firstName"
                 id="firstName"
                 name="firstName"
                 type="text"
@@ -70,7 +48,7 @@ export default {
           <div class="row">
             <div class="input-field col s12">
               <input
-                v-model="newContact.lastName"
+                v-model="editableContact.lastName"
                 id="lastName"
                 name="lastName"
                 type="text"
@@ -82,8 +60,13 @@ export default {
           <div class="row">
             <div class="input-field col s12">
               <input
-                v-model="newContact.phone"
-                @input="newContact.phone = newContact.phone.replace(/\D/g, '')"
+                v-model="editableContact.phone"
+                @input="
+                  editableContact.phone = editableContact.phone.replace(
+                    /\D/g,
+                    ''
+                  )
+                "
                 id="phone"
                 name="phone"
                 type="tel"
@@ -105,7 +88,7 @@ export default {
                 </label>
               </div>
               <a
-                v-on:click="handleAddContact"
+                @click="$emit('contact-edited', editableContact)"
                 id="appAddContact"
                 class="btn-ok waves-effect waves-light btn modal-close"
               >
