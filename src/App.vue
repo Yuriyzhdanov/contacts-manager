@@ -78,31 +78,8 @@ export default {
       this.contacts.push(newContact)
     },
 
-    onAddToFavorite() {
-      if (this.selectedContact) {
-        this.selectedContact.isFavorite = true
-      }
-    },
-
-    onRemoveFromFavorite() {
-      if (this.selectedContact) {
-        this.selectedContact.isFavorite = false
-      }
-    },
-
     onRemoveContact(contact) {
       this.contacts = this.contacts.filter(c => c.id !== contact.id)
-
-      // const index = this.contacts.findIndex(c => c.id === contact.id)
-      // if (index !== -1) {
-      //   return this.contacts.splice(index, 1)
-      // }
-      // return []
-    },
-
-    updateContact(contactData) {
-      const contact = this.contacts.find(c => c.id === contactData.id)
-      Object.assign(contact, contactData)
     },
   },
 }
