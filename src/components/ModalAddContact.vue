@@ -22,7 +22,7 @@ export default {
 
   methods: {
     validateContact(contact) {
-      return contact.firstName && contact.phone
+      return contact.firstName && contact.lastName && contact.phone
     },
   },
 }
