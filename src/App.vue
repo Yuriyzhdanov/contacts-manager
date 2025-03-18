@@ -126,7 +126,7 @@ export default {
   <ModalAddContact
     :current-contact="currentContact"
     @contact-edited="Object.assign(currentContact, $event)"
-    @contact-added=""
+    @contact-added="currentContact"
   />
   <ModalContactDetail
     :current-contact="currentContact"
