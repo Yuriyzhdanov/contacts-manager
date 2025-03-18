@@ -2,7 +2,7 @@
 export default {
   props: ['currentContact'],
 
-  emits: ['contact-edited'],
+  emits: ['contact-edited', 'contact-added'],
 
   data() {
     return {
@@ -14,7 +14,6 @@ export default {
     currentContact: {
       deep: true,
       handler(newValue) {
-        console.log('>>', newValue)
         this.editableContact = { ...newValue }
       },
     },
