@@ -131,7 +131,7 @@ export default {
   <ModalContactDetail
     :current-contact="currentContact"
     @favorite-updated="currentContact.isFavorite = $event"
-    @contact-removed="contacts = contacts.filter(c => c.id !== $event.id)"
+    @contact-removed="onRemoveContact"
   />
   <ModalSearchResults
     v-if="contacts"
