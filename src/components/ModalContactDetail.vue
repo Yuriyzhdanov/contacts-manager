@@ -24,7 +24,6 @@ export default {
               >
 
               <span
-                @click="onEditContact"
                 href="#modal1"
                 class="modal-close modal-trigger material-symbols-outlined"
                 >edit</span
