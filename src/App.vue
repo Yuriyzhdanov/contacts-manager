@@ -26,6 +26,8 @@ export default {
         lastName: '',
         phone: '',
         isFavorite: false,
+        isCall: false,
+        lastCallTime: 0,
       },
 
       contacts: [
@@ -66,6 +68,10 @@ export default {
     favoriteContacts() {
       return this.contacts.filter(contact => contact.isFavorite)
     },
+
+    callContacts() {
+      return this.contacts.filter(contact => contact.isCall)
+    },
   },
 
   methods: {
@@ -76,29 +82,24 @@ export default {
     addNewContact(contact) {
       this.contacts.push(contact)
     },
-  },
 
-  // addNewContact(contact) {
-  //   const newContact = {
-  //     ...contact,
-  //     id: Date.now(),
-  //     isFavorite: false,
-  //   }
-  //   this.contacts.push(newContact)
-  // },
+    onRemoveContact(contact) {
+      this.contacts = this.contacts.filter(c => c.id !== contact.id)
+    },
 
-  onRemoveContact(contact) {
-    this.contacts = this.contacts.filter(c => c.id !== contact.id)
+    // updateCallTime(time) {
+    //   this.selectedContact.lastCallTime = time
+    // },
   },
 }
 </script>
 <template>
   <div class="wrapper teal lighten-5">
-    {{ contacts }}
+    <!-- {{ contacts }} -->
     <NavigationBar @on-search-query="searchQuery = $event" />
     <div>
       <TabFavorites :contacts="favoriteContacts" />
-      <TabRecentCalls />
+      <TabRecentCalls :contacts="callContacts" />
       <TabContacts
         :contacts="contacts"
         @selected-contact-changed="currentContact = $event"
@@ -116,6 +117,7 @@ export default {
     :current-contact="currentContact"
     @favorite-updated="currentContact.isFavorite = $event"
     @contact-removed="onRemoveContact"
+    @call-updated="currentContact.isCall = $event"
   />
   <ModalSearchResults
     v-if="contacts"

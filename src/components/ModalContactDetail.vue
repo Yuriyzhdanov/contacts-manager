@@ -2,7 +2,47 @@
 export default {
   props: ['currentContact'],
 
-  emits: ['contact-removed', 'favorite-updated'],
+  emits: ['contact-removed', 'favorite-updated', 'call-updated'],
+
+  data() {
+    return {
+      lastCallTime: null,
+    }
+  },
+
+  computed: {
+    generateData() {
+      return new Date().toLocaleString()
+    },
+
+    formattedLastCallTime() {
+      if (!this.lastCallTime) return 'Нет вызовов'
+
+      const callDate = new Date(this.lastCallTime)
+      const now = new Date()
+
+      const diffTime = now - callDate
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+
+      if (diffDays === 0) return 'Сегодня'
+      if (diffDays === 1) return 'Вчера'
+      if (diffDays === 2) return 'Позавчера'
+      return callDate.toLocaleDateString()
+    },
+  },
+
+  methods: {
+    timeOfCalls() {
+      let time = new Date()
+      return time
+    },
+
+    recordCallTime() {
+      !currentContact?.isCall
+      this.lastCallTime = new Date()
+      this.$emit('call-updated', this.lastCallTime)
+    },
+  },
 }
 </script>
 
@@ -53,9 +93,13 @@ export default {
                       ><b>{{ currentContact?.phone }}</b></span
                     >
                     <p>
-                      <i>Позавчера</i>
+                      <i>{{ formattedLastCallTime }}</i>
                     </p>
-                    <a href="#!" class="secondary-content">
+                    <a
+                      @click="$emit('call-updated', recordCallTime)"
+                      href="#!"
+                      class="secondary-content"
+                    >
                       <i class="material-icons">phone</i>
                     </a>
                   </li>

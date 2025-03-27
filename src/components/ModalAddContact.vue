@@ -6,6 +6,8 @@ const initContact = () => ({
   lastName: 'test',
   phone: '123',
   isFavorite: false,
+  isCall: false,
+  timeOfCall: 0,
 })
 
 export default {
