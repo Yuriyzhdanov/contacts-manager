@@ -1,27 +1,43 @@
 <script>
-export default {
-  props: ['currentContact'],
+const makeId = () => ((Math.random() * 0xffffffff) >>> 0).toString(16)
+const initContact = () => ({
+  id: makeId(),
+  firstName: 'qqqq',
+  lastName: 'test',
+  phone: '123',
+  isFavorite: false,
+})
 
-  emits: ['contact-edited', 'contact-added'],
+export default {
+  // props: ['currentContact'],
+
+  emits: ['contact-added'],
 
   data() {
     return {
-      editableContact: {},
+      localContact: initContact(),
     }
   },
 
-  watch: {
-    currentContact: {
-      deep: true,
-      handler(newValue) {
-        this.editableContact = { ...newValue }
-      },
-    },
-  },
+  // watch: {
+  //   currentContact: {
+  //     deep: true,
+  //     handler(newValue) {
+  //       this.editableContact = { ...newValue }
+  //     },
+  //   },
+  // },
 
   methods: {
-    validateContact(contact) {
-      return contact.firstName && contact.lastName && contact.phone
+    submitContact() {
+      if (
+        this.localContact.firstName &&
+        this.localContact.lastName &&
+        this.localContact.phone
+      ) {
+        this.$emit('contact-added', { ...this.localContact })
+        this.localContact = initContact()
+      }
     },
   },
 }
@@ -35,7 +51,7 @@ export default {
           <div class="row">
             <div class="input-field col s12">
               <input
-                v-model="editableContact.firstName"
+                v-model="localContact.firstName"
                 id="firstName"
                 name="firstName"
                 type="text"
@@ -47,7 +63,7 @@ export default {
           <div class="row">
             <div class="input-field col s12">
               <input
-                v-model="editableContact.lastName"
+                v-model="localContact.lastName"
                 id="lastName"
                 name="lastName"
                 type="text"
@@ -59,13 +75,7 @@ export default {
           <div class="row">
             <div class="input-field col s12">
               <input
-                v-model="editableContact.phone"
-                @input="
-                  editableContact.phone = editableContact.phone.replace(
-                    /\D/g,
-                    ''
-                  )
-                "
+                v-model="localContact.phone"
                 id="phone"
                 name="phone"
                 type="tel"
@@ -87,7 +97,7 @@ export default {
                 </label>
               </div>
               <a
-                @click="$emit('contact-edited', editableContact)"
+                @click="submitContact"
                 id="appAddContact"
                 class="btn-ok waves-effect waves-light btn modal-close"
               >

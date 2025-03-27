@@ -69,24 +69,32 @@ export default {
   },
 
   methods: {
-    addNewContact(contact) {
-      const newContact = {
-        ...contact,
-        id: Date.now(),
-        isFavorite: false,
-      }
-      this.contacts.push(newContact)
+    contactsWithSwapped(newContact, oldContact) {
+      return this.contacts.map(n => (n === oldContact ? newContact : n))
     },
 
-    onRemoveContact(contact) {
-      this.contacts = this.contacts.filter(c => c.id !== contact.id)
+    addNewContact(contact) {
+      this.contacts.push(contact)
     },
+  },
+
+  // addNewContact(contact) {
+  //   const newContact = {
+  //     ...contact,
+  //     id: Date.now(),
+  //     isFavorite: false,
+  //   }
+  //   this.contacts.push(newContact)
+  // },
+
+  onRemoveContact(contact) {
+    this.contacts = this.contacts.filter(c => c.id !== contact.id)
   },
 }
 </script>
 <template>
   <div class="wrapper teal lighten-5">
-    <!-- {{ contacts }} -->
+    {{ contacts }}
     <NavigationBar @on-search-query="searchQuery = $event" />
     <div>
       <TabFavorites :contacts="favoriteContacts" />
@@ -101,9 +109,8 @@ export default {
   <!-- Modal Structure  -->
 
   <ModalAddContact
-    :current-contact="currentContact"
     @contact-edited="Object.assign(currentContact, $event)"
-    @contact-added="currentContact"
+    @contact-added="addNewContact"
   />
   <ModalContactDetail
     :current-contact="currentContact"
