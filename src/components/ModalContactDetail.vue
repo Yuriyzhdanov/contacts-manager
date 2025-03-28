@@ -1,11 +1,12 @@
 <script>
 export default {
-  props: ['currentContact'],
+  props: ['contact'],
 
-  emits: ['contact-removed', 'favorite-updated', 'call-updated'],
+  emits: ['contact-edit'],
 
   data() {
     return {
+      localContact: Object.assign({}, this.contact),
       // lastCallTime: this.contact.lastCallTime || null,
       // isFavorite: this.contact.isFavorite || false,
       // localContact:(...this.contact),
@@ -13,8 +14,14 @@ export default {
     }
   },
 
+  watch: {
+    contact(newValue) {
+      this.localContact = Object.assign({}, newValue)
       // (this.lastCallTime = newValue.lastCallTime || null),
       // (this.isFavorite = newValue.isFavorite || false)
+    },
+  },
+
   computed: {
     // generateData() {
     //   return new Date().toLocaleString()
@@ -56,28 +63,21 @@ export default {
               <i class="material-symbols-outlined person">person</i>
             </div>
             <div class="col s6 right-align teal-text text-lighten-5">
-              <span
-                @click="$emit('favorite-updated', !currentContact?.isFavorite)"
-                class="modal-close material-symbols-outlined"
-                :class="{ 'non-fill': !currentContact?.isFavorite }"
-                >star</span
-              >
+              <span class="modal-close material-symbols-outlined">star</span>
 
               <span
+                @click="
+                  $emit('contact-edit', Object.assign({}, this.localContact))
+                "
                 href="#modal1"
                 class="modal-close modal-trigger material-symbols-outlined"
                 >edit</span
               >
-
-              <span
-                @click="$emit('contact-removed', currentContact)"
-                class="modal-close material-symbols-outlined"
-                >delete</span
-              >
+              <span class="modal-close material-symbols-outlined">delete</span>
             </div>
           </div>
           <h5 class="center-align white-text">
-            {{ currentContact?.firstName }} {{ currentContact?.lastName }}
+            {{ contact?.firstName }} {{ contact?.lastName }}
           </h5>
         </div>
         <div class="bottom">
@@ -90,16 +90,12 @@ export default {
                   >
                     <i class="material-icons circle teal darken-3">person</i>
                     <span class="title"
-                      ><b>{{ currentContact?.phone }}</b></span
+                      ><b>{{ contact?.phone }}</b></span
                     >
                     <p>
-                      <i>{{ formattedLastCallTime }}</i>
+                      <i>{{ 'позавчера' }}</i>
                     </p>
-                    <a
-                      @click="$emit('call-updated', recordCallTime)"
-                      href="#!"
-                      class="secondary-content"
-                    >
+                    <a href="#!" class="secondary-content">
                       <i class="material-icons">phone</i>
                     </a>
                   </li>
