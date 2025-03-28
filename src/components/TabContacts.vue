@@ -27,6 +27,7 @@ export default {
       <ContactItem
         v-for="contact of contacts"
         :key="contact.id"
+        :contact="contact"
         @click="$emit('contact-selected', contact)"
       ></ContactItem>
     </ul>
