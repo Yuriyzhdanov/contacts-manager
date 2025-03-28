@@ -6,42 +6,42 @@ export default {
 
   data() {
     return {
-      lastCallTime: null,
+      // lastCallTime: this.contact.lastCallTime || null,
+      // isFavorite: this.contact.isFavorite || false,
+      // localContact:(...this.contact),
+      // lastCallTime: null,
     }
   },
 
+      // (this.lastCallTime = newValue.lastCallTime || null),
+      // (this.isFavorite = newValue.isFavorite || false)
   computed: {
-    generateData() {
-      return new Date().toLocaleString()
-    },
-
-    formattedLastCallTime() {
-      if (!this.lastCallTime) return 'Нет вызовов'
-
-      const callDate = new Date(this.lastCallTime)
-      const now = new Date()
-
-      const diffTime = now - callDate
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
-
-      if (diffDays === 0) return 'Сегодня'
-      if (diffDays === 1) return 'Вчера'
-      if (diffDays === 2) return 'Позавчера'
-      return callDate.toLocaleDateString()
-    },
+    // generateData() {
+    //   return new Date().toLocaleString()
+    // },
+    // formattedLastCallTime() {
+    //   if (!this.lastCallTime) return 'Нет вызовов'
+    //   const callDate = new Date(this.lastCallTime)
+    //   const now = new Date()
+    //   const diffTime = now - callDate
+    //   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+    //   if (diffDays === 0) return 'Сегодня'
+    //   if (diffDays === 1) return 'Вчера'
+    //   if (diffDays === 2) return 'Позавчера'
+    //   return callDate.toLocaleDateString()
+    // },
   },
 
   methods: {
-    timeOfCalls() {
-      let time = new Date()
-      return time
-    },
-
-    recordCallTime() {
-      !currentContact?.isCall
-      this.lastCallTime = new Date()
-      this.$emit('call-updated', this.lastCallTime)
-    },
+    // timeOfCalls() {
+    //   let time = new Date()
+    //   return time
+    // },
+    // recordCallTime() {
+    //   !currentContact?.isCall
+    //   this.lastCallTime = new Date()
+    //   this.$emit('call-updated', this.lastCallTime)
+    // },
   },
 }
 </script>

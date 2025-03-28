@@ -20,15 +20,15 @@ export default {
 
   data() {
     return {
-      currentContact: {
-        id: 0,
-        firstName: '',
-        lastName: '',
-        phone: '',
-        isFavorite: false,
-        isCall: false,
-        lastCallTime: 0,
-      },
+      // currentContact: {
+      //   id: 0,
+      //   firstName: '',
+      //   lastName: '',
+      //   phone: '',
+      //   isFavorite: false,
+      //   isCall: false,
+      //   lastCallTime: 0,
+      // },
 
       contacts: [
         {
@@ -61,31 +61,36 @@ export default {
         },
       ],
       searchQuery: '',
+      currentContact: null,
     }
   },
 
   computed: {
-    favoriteContacts() {
-      return this.contacts.filter(contact => contact.isFavorite)
-    },
-
-    callContacts() {
-      return this.contacts.filter(contact => contact.isCall)
-    },
+    // favoriteContacts() {
+    //   return this.contacts.filter(contact => contact.isFavorite)
+    // },
+    // callContacts() {
+    //   return this.contacts.filter(contact => contact.isCall)
+    // },
   },
 
   methods: {
-    contactsWithSwapped(newContact, oldContact) {
-      return this.contacts.map(n => (n === oldContact ? newContact : n))
+    contactsWithSwapped(newContact) {
+      return this.contacts.map(contact =>
+        contact.id === newContact.id ? newContact : contact
+      )
     },
 
     addNewContact(contact) {
       this.contacts.push(contact)
     },
 
-    onRemoveContact(contact) {
-      this.contacts = this.contacts.filter(c => c.id !== contact.id)
+    selectContact(contact) {
+      this.currentContact = contact
     },
+    // onRemoveContact(contact) {
+    //   this.contacts = this.contacts.filter(c => c.id !== contact.id)
+    // },
 
     // updateCallTime(time) {
     //   this.selectedContact.lastCallTime = time
@@ -98,27 +103,16 @@ export default {
     <!-- {{ contacts }} -->
     <NavigationBar @on-search-query="searchQuery = $event" />
     <div>
-      <TabFavorites :contacts="favoriteContacts" />
-      <TabRecentCalls :contacts="callContacts" />
-      <TabContacts
-        :contacts="contacts"
-        @selected-contact-changed="currentContact = $event"
-      />
+      <TabFavorites />
+      <TabRecentCalls />
+      <TabContacts :contacts="contacts" @contact-selected="selectContact" />
     </div>
   </div>
 
   <!-- Modal Structure  -->
 
-  <ModalAddContact
-    @contact-edited="Object.assign(currentContact, $event)"
-    @contact-added="addNewContact"
-  />
-  <ModalContactDetail
-    :current-contact="currentContact"
-    @favorite-updated="currentContact.isFavorite = $event"
-    @contact-removed="onRemoveContact"
-    @call-updated="currentContact.isCall = $event"
-  />
+  <ModalAddContact @contact-added="addNewContact" />
+  <ModalContactDetail :contact="selectContact" />
   <ModalSearchResults
     v-if="contacts"
     :contacts="contacts"
