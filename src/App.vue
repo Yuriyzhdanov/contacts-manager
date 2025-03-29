@@ -115,6 +115,7 @@ export default {
 
   <ModalAddContact @contact-added="addNewContact" />
   <ModalEditContact :contact="currentContact" />
+  <ModalContactDetail :contact="currentContact" />
   <ModalSearchResults
     v-if="contacts"
     :contacts="contacts"
