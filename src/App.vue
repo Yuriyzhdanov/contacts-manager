@@ -89,6 +89,7 @@ export default {
 
     selectContact(contact) {
       this.currentContact = contact
+      console.log('this.currentContact ', this.currentContact)
     },
     // onRemoveContact(contact) {
     //   this.contacts = this.contacts.filter(c => c.id !== contact.id)
