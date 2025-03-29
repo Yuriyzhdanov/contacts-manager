@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ['contact'],
+  props: ['currentContact'],
 
   emits: ['contact-edit'],
 
@@ -77,7 +77,7 @@ export default {
             </div>
           </div>
           <h5 class="center-align white-text">
-            {{ contact?.firstName }} {{ contact?.lastName }}
+            {{ currentContact?.firstName }} {{ currentContact?.lastName }}
           </h5>
         </div>
         <div class="bottom">
@@ -90,7 +90,7 @@ export default {
                   >
                     <i class="material-icons circle teal darken-3">person</i>
                     <span class="title"
-                      ><b>{{ contact?.phone }}</b></span
+                      ><b>{{ currentContact?.phone }}</b></span
                     >
                     <p>
                       <i>{{ 'позавчера' }}</i>
