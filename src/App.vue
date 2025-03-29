@@ -106,9 +106,12 @@ export default {
     <!-- {{ contacts }} -->
     <NavigationBar @on-search-query="searchQuery = $event" />
     <div>
-      <TabFavorites />
-      <TabRecentCalls />
-      <TabListContacts :contacts="contacts" @contact-selected="selectContact" />
+      <!-- <TabFavorites /> -->
+      <!-- <TabRecentCalls /> -->
+      <TabListContacts
+        :contacts="contacts"
+        @contact-selected="currentContact = $event"
+      />
     </div>
   </div>
 
@@ -117,11 +120,11 @@ export default {
   <ModalAddContact @contact-added="addNewContact" />
   <ModalEditContact :contact="currentContact" />
   <ModalContactDetail :contact="currentContact" />
-  <ModalSearchResults
+  <!-- <ModalSearchResults
     v-if="contacts"
     :contacts="contacts"
     :search-query="searchQuery"
-  />
+  /> -->
 </template>
 
 <style>
