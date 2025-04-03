@@ -1,12 +1,10 @@
 <script>
 export default {
-  props: ['currentContact'],
-
-  emits: ['contact-edit'],
+  props: ['selectedContact'],
 
   data() {
     return {
-      localContact: Object.assign({}, this.contact),
+      localContact: Object.assign({}, this.selectedContact),
       // lastCallTime: this.contact.lastCallTime || null,
       // isFavorite: this.contact.isFavorite || false,
       // localContact:(...this.contact),

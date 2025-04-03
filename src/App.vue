@@ -22,15 +22,7 @@ export default {
 
   data() {
     return {
-      // currentContact: {
-      //   id: 0,
-      //   firstName: '',
-      //   lastName: '',
-      //   phone: '',
-      //   isFavorite: false,
-      //   isCall: false,
-      //   lastCallTime: 0,
-      // },
+      selectedContact: {},
 
       contacts: [
         {
@@ -63,7 +55,6 @@ export default {
         },
       ],
       searchQuery: '',
-      currentContact: null,
     }
   },
 
@@ -119,7 +110,7 @@ export default {
 
   <ModalAddContact @contact-added="addNewContact" />
   <ModalEditContact :contact="currentContact" />
-  <ModalContactDetail :contact="currentContact" />
+  <ModalContactDetail :selectedContact="selectedContact" />
   <!-- <ModalSearchResults
     v-if="contacts"
     :contacts="contacts"
