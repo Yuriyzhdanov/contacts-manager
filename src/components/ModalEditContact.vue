@@ -1,28 +1,27 @@
 <script>
 export default {
-  props: ['currentContact'],
+  props: ['selectedContact'],
 
   emits: ['contact-edit'],
 
   data() {
     return {
-      localContact: '',
+      localContact: { ...selectedContact },
     }
   },
 
   watch: {
-    contact: {
-      handler(newContact) {
-        this.localContact = { ...newContact }
-      },
-      immediate: true,
+    selectedContact: {
       deep: true,
+      handler(newValue) {
+        this.localContact = { ...newValue }
+      },
     },
   },
 
   methods: {
-    submitContact() {
-      this.$emit('contact-edit', this.localContact)
+    editContact() {
+      this.$emit('contact-edit', { ...this.localContact })
     },
   },
 }
@@ -82,7 +81,7 @@ export default {
                 </label>
               </div>
               <a
-                @click="submitContact"
+                @click="editContact"
                 id="appAddContact"
                 class="btn-ok waves-effect waves-light btn modal-close"
               >

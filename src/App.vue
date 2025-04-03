@@ -22,8 +22,8 @@ export default {
 
   data() {
     return {
+      searchQuery: '',
       selectedContact: {},
-
       contacts: [
         {
           id: 33,
@@ -39,32 +39,8 @@ export default {
           phone: '987654321',
           isFavorite: true,
         },
-        {
-          id: 43,
-          firstName: 'Irina',
-          lastName: 'Irinova',
-          phone: '123',
-          isFavorite: false,
-        },
-        {
-          id: 44,
-          firstName: 'Irina',
-          lastName: 'Irinovna',
-          phone: '123',
-          isFavorite: false,
-        },
       ],
-      searchQuery: '',
     }
-  },
-
-  computed: {
-    // favoriteContacts() {
-    //   return this.contacts.filter(contact => contact.isFavorite)
-    // },
-    // callContacts() {
-    //   return this.contacts.filter(contact => contact.isCall)
-    // },
   },
 
   methods: {
@@ -73,22 +49,6 @@ export default {
         contact.id === newContact.id ? newContact : contact
       )
     },
-
-    addNewContact(contact) {
-      this.contacts.push(contact)
-    },
-
-    selectContact(contact) {
-      this.currentContact = contact
-      console.log('this.currentContact ', this.currentContact)
-    },
-    // onRemoveContact(contact) {
-    //   this.contacts = this.contacts.filter(c => c.id !== contact.id)
-    // },
-
-    // updateCallTime(time) {
-    //   this.selectedContact.lastCallTime = time
-    // },
   },
 }
 </script>
@@ -101,15 +61,15 @@ export default {
       <!-- <TabRecentCalls /> -->
       <TabListContacts
         :contacts="contacts"
-        @contact-selected="currentContact = $event"
+        @selected-contact-update="selectedContact = $event"
       />
     </div>
   </div>
 
   <!-- Modal Structure  -->
 
-  <ModalAddContact @contact-added="addNewContact" />
-  <ModalEditContact :contact="currentContact" />
+  <ModalAddContact @contact-added="contacts.push($event)" />
+  <ModalEditContact :selectedContact="selectedContact" />
   <ModalContactDetail :selectedContact="selectedContact" />
   <!-- <ModalSearchResults
     v-if="contacts"

@@ -10,14 +10,7 @@ export default {
 
   props: ['contacts'],
 
-  emits: ['contact-selected'],
-
-  methods: {
-    // addContact(contact) {
-    //   this.contacts.push(contact)
-    //   this.$emit('contacts-changed', this.contacts)
-    // },
-  },
+  emits: ['selected-contact-update'],
 }
 </script>
 
@@ -28,7 +21,7 @@ export default {
         v-for="contact of contacts"
         :key="contact.id"
         :contact="contact"
-        @click="$emit('contact-selected', contact)"
+        @click="$emit('selected-contact-update', contact)"
       ></ContactItem>
     </ul>
     <UiContactAddButton></UiContactAddButton>

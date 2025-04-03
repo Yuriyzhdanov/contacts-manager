@@ -1,53 +1,6 @@
 <script>
 export default {
   props: ['selectedContact'],
-
-  data() {
-    return {
-      localContact: Object.assign({}, this.selectedContact),
-      // lastCallTime: this.contact.lastCallTime || null,
-      // isFavorite: this.contact.isFavorite || false,
-      // localContact:(...this.contact),
-      // lastCallTime: null,
-    }
-  },
-
-  watch: {
-    contact(newValue) {
-      this.localContact = Object.assign({}, newValue)
-      // (this.lastCallTime = newValue.lastCallTime || null),
-      // (this.isFavorite = newValue.isFavorite || false)
-    },
-  },
-
-  computed: {
-    // generateData() {
-    //   return new Date().toLocaleString()
-    // },
-    // formattedLastCallTime() {
-    //   if (!this.lastCallTime) return 'Нет вызовов'
-    //   const callDate = new Date(this.lastCallTime)
-    //   const now = new Date()
-    //   const diffTime = now - callDate
-    //   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
-    //   if (diffDays === 0) return 'Сегодня'
-    //   if (diffDays === 1) return 'Вчера'
-    //   if (diffDays === 2) return 'Позавчера'
-    //   return callDate.toLocaleDateString()
-    // },
-  },
-
-  methods: {
-    // timeOfCalls() {
-    //   let time = new Date()
-    //   return time
-    // },
-    // recordCallTime() {
-    //   !currentContact?.isCall
-    //   this.lastCallTime = new Date()
-    //   this.$emit('call-updated', this.lastCallTime)
-    // },
-  },
 }
 </script>
 
@@ -62,11 +15,8 @@ export default {
             </div>
             <div class="col s6 right-align teal-text text-lighten-5">
               <span class="modal-close material-symbols-outlined">star</span>
-
               <span
-                @click="
-                  $emit('contact-edit', Object.assign({}, this.localContact))
-                "
+                @click=""
                 href="#modal1"
                 class="modal-close modal-trigger material-symbols-outlined"
                 >edit</span
@@ -75,7 +25,7 @@ export default {
             </div>
           </div>
           <h5 class="center-align white-text">
-            {{ currentContact?.firstName }} {{ currentContact?.lastName }}
+            {{ selectedContact.firstName }} {{ selectedContact.lastName }}
           </h5>
         </div>
         <div class="bottom">
@@ -88,7 +38,7 @@ export default {
                   >
                     <i class="material-icons circle teal darken-3">person</i>
                     <span class="title"
-                      ><b>{{ currentContact?.phone }}</b></span
+                      ><b>{{ selectedContact.phone }}</b></span
                     >
                     <p>
                       <i>{{ 'позавчера' }}</i>

@@ -2,43 +2,26 @@
 const makeId = () => ((Math.random() * 0xffffffff) >>> 0).toString(16)
 const initContact = () => ({
   id: makeId(),
-  firstName: 'qqqq',
-  lastName: 'test',
-  phone: '123',
+  firstName: '',
+  lastName: '',
+  phone: '',
   isFavorite: false,
-  isCall: false,
-  timeOfCall: 0,
 })
 
 export default {
-  // props: ['currentContact'],
-
   emits: ['contact-added'],
 
   data() {
     return {
-      localContact: initContact(),
+      contact: initContact(),
     }
   },
 
-  // watch: {
-  //   currentContact: {
-  //     deep: true,
-  //     handler(newValue) {
-  //       this.editableContact = { ...newValue }
-  //     },
-  //   },
-  // },
-
   methods: {
     submitContact() {
-      if (
-        this.localContact.firstName &&
-        this.localContact.lastName &&
-        this.localContact.phone
-      ) {
-        this.$emit('contact-added', { ...this.localContact })
-        this.localContact = initContact()
+      if (Object.keys(this.contact).every(c => c)) {
+        this.$emit('contact-added', { ...this.contact })
+        this.contact = initContact()
       }
     },
   },
@@ -53,7 +36,7 @@ export default {
           <div class="row">
             <div class="input-field col s12">
               <input
-                v-model="localContact.firstName"
+                v-model="contact.firstName"
                 id="firstName"
                 name="firstName"
                 type="text"
@@ -65,7 +48,7 @@ export default {
           <div class="row">
             <div class="input-field col s12">
               <input
-                v-model="localContact.lastName"
+                v-model="contact.lastName"
                 id="lastName"
                 name="lastName"
                 type="text"
@@ -77,7 +60,7 @@ export default {
           <div class="row">
             <div class="input-field col s12">
               <input
-                v-model="localContact.phone"
+                v-model="contact.phone"
                 id="phone"
                 name="phone"
                 type="tel"
