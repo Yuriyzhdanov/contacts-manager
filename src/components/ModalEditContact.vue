@@ -6,7 +6,7 @@ export default {
 
   data() {
     return {
-      localContact: { ...selectedContact },
+      localContact: { ...this.selectedContact },
     }
   },
 
@@ -27,7 +27,7 @@ export default {
 }
 </script>
 <template>
-  <div id="modal1" class="modal bottom-sheet">
+  <div id="modal4" class="modal bottom-sheet">
     <div class="modal-content">
       <div class="wrap-content row">
         <h5 class="header">Редактировать контакт</h5>
