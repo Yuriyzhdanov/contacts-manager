@@ -61,7 +61,7 @@ export default {
       <!-- <TabRecentCalls /> -->
       <TabListContacts
         :contacts="contacts"
-        @selected-contact-update="selectedContact = $event"
+        @update-selected-contact="selectedContact = $event"
       />
     </div>
   </div>
@@ -69,7 +69,10 @@ export default {
   <!-- Modal Structure  -->
 
   <ModalAddContact @contact-added="contacts.push($event)" />
-  <ModalEditContact :selectedContact="selectedContact" />
+  <ModalEditContact
+    :selectedContact="selectedContact"
+    @contact-edit="contacts = contactsWithSwapped($event)"
+  />
   <ModalContactDetail :selectedContact="selectedContact" />
   <!-- <ModalSearchResults
     v-if="contacts"
@@ -202,6 +205,11 @@ nav.nav-extended form input:focus {
   height: calc(100vh);
 }
 
+#modal0.bottom-sheet {
+  max-height: calc(100vh);
+  height: calc(100vh);
+}
+
 #modal2.bottom-sheet {
   max-height: calc(60vh);
   height: calc(60vh);
@@ -218,6 +226,16 @@ nav.nav-extended form input:focus {
   display: none;
 }
 #modal1 .wrap-form-buttons > * {
+  margin: 15px;
+}
+
+#modal0 .input-reset {
+  display: inline-block;
+}
+#modal0 .input-reset [type='reset'] {
+  display: none;
+}
+#modal0 .wrap-form-buttons > * {
   margin: 15px;
 }
 

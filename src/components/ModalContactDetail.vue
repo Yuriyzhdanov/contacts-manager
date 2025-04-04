@@ -16,8 +16,7 @@ export default {
             <div class="col s6 right-align teal-text text-lighten-5">
               <span class="modal-close material-symbols-outlined">star</span>
               <span
-                @click=""
-                href="#modal1"
+                href="#modal0"
                 class="modal-close modal-trigger material-symbols-outlined"
                 >edit</span
               >

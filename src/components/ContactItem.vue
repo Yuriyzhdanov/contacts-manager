@@ -1,8 +1,6 @@
 <script>
 export default {
   props: ['contact'],
-
-  emits: ['contact-selected'],
 }
 </script>
 
