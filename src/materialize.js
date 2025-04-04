@@ -1,4 +1,3 @@
-import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css'
 
 document.addEventListener('DOMContentLoaded', function () {
