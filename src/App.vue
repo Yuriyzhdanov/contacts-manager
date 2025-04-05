@@ -57,7 +57,7 @@ export default {
     <!-- {{ contacts }} -->
     <NavigationBar @on-search-query="searchQuery = $event" />
     <div>
-      <!-- <TabFavorites /> -->
+      <TabFavorites :contacts="contacts" />
       <!-- <TabRecentCalls /> -->
       <TabListContacts
         :contacts="contacts"
@@ -73,7 +73,10 @@ export default {
     :selectedContact="selectedContact"
     @contact-edit="contacts = contactsWithSwapped($event)"
   />
-  <ModalContactDetail :selectedContact="selectedContact" />
+  <ModalContactDetail
+    :selectedContact="selectedContact"
+    @toggle-favorite="contacts = contactsWithSwapped($event)"
+  />
   <!-- <ModalSearchResults
     v-if="contacts"
     :contacts="contacts"

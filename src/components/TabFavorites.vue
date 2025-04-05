@@ -7,6 +7,16 @@ export default {
   },
 
   props: ['contacts'],
+
+  methods: {
+    copyArray() {
+      return this.contacts.map(item => ({ ...item }))
+    },
+    getFavoriteContacts() {
+      const contactsCopy = this.copyArray()
+      return contactsCopy.filter(contact => contact.isFavorite === true)
+    },
+  },
 }
 </script>
 

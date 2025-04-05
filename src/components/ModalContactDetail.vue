@@ -1,6 +1,28 @@
 <script>
 export default {
   props: ['selectedContact'],
+  emits: ['toggle-favorite'],
+
+  data() {
+    return {
+      localContact: { ...this.selectedContact },
+    }
+  },
+  watch: {
+    selectedContact: {
+      deep: true,
+      handler(newValue) {
+        this.localContact = { ...newValue }
+      },
+    },
+  },
+
+  methods: {
+    toggleFavorite() {
+      this.localContact.isFavorite = !this.localContact.isFavorite
+      this.$emit('toggle-favorite', { ...this.localContact })
+    },
+  },
 }
 </script>
 
@@ -14,7 +36,13 @@ export default {
               <i class="material-symbols-outlined person">person</i>
             </div>
             <div class="col s6 right-align teal-text text-lighten-5">
-              <span class="modal-close material-symbols-outlined">star</span>
+              <span
+                @click="toggleFavorite"
+                class="modal-close material-symbols-outlined"
+                :class="{ 'non-fill': !localContact.isFavorite }"
+              >
+                star
+              </span>
               <span
                 href="#modal0"
                 class="modal-close modal-trigger material-symbols-outlined"
@@ -24,7 +52,7 @@ export default {
             </div>
           </div>
           <h5 class="center-align white-text">
-            {{ selectedContact.firstName }} {{ selectedContact.lastName }}
+            {{ localContact.firstName }} {{ localContact.lastName }}
           </h5>
         </div>
         <div class="bottom">
@@ -37,7 +65,7 @@ export default {
                   >
                     <i class="material-icons circle teal darken-3">person</i>
                     <span class="title"
-                      ><b>{{ selectedContact.phone }}</b></span
+                      ><b>{{ localContact.phone }}</b></span
                     >
                     <p>
                       <i>{{ 'позавчера' }}</i>
