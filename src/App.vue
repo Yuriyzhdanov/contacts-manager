@@ -2,11 +2,12 @@
 import NavigationBar from './components/NavigationBar.vue'
 import TabFavorites from './components/TabFavorites.vue'
 import TabRecentCalls from './components/TabRecentCalls.vue'
-import TabListContacts from './components/TabListContacts.vue'
-import ModalAddContact from './components/ModalAddContact.vue'
-import ModalEditContact from './components/ModalEditContact.vue'
-import ModalContactDetail from './components/ModalContactDetail.vue'
 import ModalSearchResults from './components/ModalSearchResults.vue'
+
+import TabListContacts from './components/contacts/ContactsListTab.vue'
+import ModalAddContact from './components/contacts/ContactSubmitterModal.vue'
+import ModalEditContact from './components/contacts/ContactEdittorModal.vue'
+import ModalContactDetail from './components/contacts/ContactDetailModal.vue'
 
 export default {
   components: {

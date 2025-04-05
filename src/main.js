@@ -4,7 +4,7 @@ import App from './App.vue'
 import './materialize.js'
 
 import 'materialize-css/dist/css/materialize.min.css'
-import './style.css'
+import './css/style.css'
 
 const app = createApp(App)
 

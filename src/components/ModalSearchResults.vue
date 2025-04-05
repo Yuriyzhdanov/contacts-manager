@@ -1,5 +1,5 @@
 <script>
-import { searchContacts } from '../findContact.js'
+import { searchContacts } from '../functions/findContact.js'
 
 export default {
   props: ['contacts', 'searchQuery'],
