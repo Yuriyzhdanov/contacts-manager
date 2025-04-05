@@ -1,13 +1,14 @@
 <script>
 export default {
   props: ['selectedContact'],
-  emits: ['toggle-favorite'],
+  emits: ['toggle-favorite', 'remove-contact'],
 
   data() {
     return {
       localContact: { ...this.selectedContact },
     }
   },
+
   watch: {
     selectedContact: {
       deep: true,
@@ -21,6 +22,10 @@ export default {
     toggleFavorite() {
       this.localContact.isFavorite = !this.localContact.isFavorite
       this.$emit('toggle-favorite', { ...this.localContact })
+    },
+
+    removeContact() {
+      this.$emit('remove-contact', { ...this.localContact })
     },
   },
 }
@@ -48,7 +53,11 @@ export default {
                 class="modal-close modal-trigger material-symbols-outlined"
                 >edit</span
               >
-              <span class="modal-close material-symbols-outlined">delete</span>
+              <span
+                @click="removeContact"
+                class="modal-close material-symbols-outlined"
+                >delete</span
+              >
             </div>
           </div>
           <h5 class="center-align white-text">

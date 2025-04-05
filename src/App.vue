@@ -50,6 +50,10 @@ export default {
         contact.id === newContact.id ? newContact : contact
       )
     },
+
+    removeContactFromList(contact) {
+      return this.contacts.filter(c => c.id !== contact.id)
+    },
   },
 }
 </script>
@@ -77,6 +81,7 @@ export default {
   <ContactDetailModal
     :selectedContact="selectedContact"
     @toggle-favorite="contacts = contactsWithSwapped($event)"
+    @remove-contact="contacts = removeContactFromList($event)"
   />
   <!-- <ModalSearchResults
     v-if="contacts"
