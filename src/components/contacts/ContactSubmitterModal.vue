@@ -8,6 +8,15 @@ const initContact = () => ({
   isFavorite: false,
 })
 
+// const verifyContact = c =>
+//   Object.entries(c)
+//     .filter(([key, _]) => key !== 'isFavorite')
+//     .every(([_, val]) => val)
+
+// let isVerified = Object.entries(this.contact)
+//   .filter(([key, _]) => key !== 'isFavorite')
+//   .every(([_, val]) => val)
+
 export default {
   emits: ['contact-added'],
 
@@ -19,10 +28,11 @@ export default {
 
   methods: {
     submitContact() {
-      if (Object.keys(this.contact).every(c => c)) {
-        this.$emit('contact-added', { ...this.contact })
-        this.contact = initContact()
-      }
+      const REQUIRED_FIELDS = ['firstName', 'lastName', 'phone']
+      const isVerified = REQUIRED_FIELDS.every(rf => this.contact[rf])
+      if (!isVerified) return
+      this.$emit('contact-added', { ...this.contact })
+      this.contact = initContact()
     },
   },
 }

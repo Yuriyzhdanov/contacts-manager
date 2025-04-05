@@ -6,7 +6,6 @@ export default {
 
 <template>
   <li
-    v-on:click="$emit('contact-selected', contact)"
     href="#modal2"
     class="contact modal-trigger collection-item transparent waves-effect"
   >
@@ -20,11 +19,11 @@ export default {
         </div>
         <div class="col s4">
           <span class=""
-            ><b>{{ contact?.firstName + ' ' + contact?.lastName }}</b></span
+            ><b>{{ contact.firstName + ' ' + contact.lastName }}</b></span
           >
         </div>
         <div class="col s4">
-          <span class="badge new">{{ contact?.phone }}</span>
+          <span class="badge new">{{ contact.phone }}</span>
         </div>
       </div>
     </div>

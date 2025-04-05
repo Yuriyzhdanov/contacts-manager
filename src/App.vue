@@ -4,7 +4,7 @@ import TabFavorites from './components/TabFavorites.vue'
 import TabRecentCalls from './components/TabRecentCalls.vue'
 import ModalSearchResults from './components/ModalSearchResults.vue'
 
-import TabListContacts from './components/contacts/ContactsListTab.vue'
+import ContactsListTab from './components/contacts/ContactsListTab.vue'
 import ModalAddContact from './components/contacts/ContactSubmitterModal.vue'
 import ModalEditContact from './components/contacts/ContactEdittorModal.vue'
 import ModalContactDetail from './components/contacts/ContactDetailModal.vue'
@@ -14,7 +14,7 @@ export default {
     NavigationBar,
     TabFavorites,
     TabRecentCalls,
-    TabListContacts,
+    ContactsListTab,
     ModalAddContact,
     ModalEditContact,
     ModalContactDetail,
@@ -60,7 +60,7 @@ export default {
     <div>
       <TabFavorites :contacts="contacts" />
       <!-- <TabRecentCalls /> -->
-      <TabListContacts
+      <ContactsListTab
         :contacts="contacts"
         @update-selected-contact="selectedContact = $event"
       />
