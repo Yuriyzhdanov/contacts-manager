@@ -8,15 +8,22 @@ export default {
 
   props: ['contacts'],
 
-  methods: {
-    copyArray() {
-      return this.contacts.map(item => ({ ...item }))
-    },
-    getFavoriteContacts() {
-      const contactsCopy = this.copyArray()
-      return contactsCopy.filter(contact => contact.isFavorite === true)
+  computed: {
+    favoriteContacts() {
+      return this.contacts.filter(contact => contact.isFavorite)
     },
   },
+
+  // methods: {
+  //   copyArray() {
+  //     return this.contacts.map(item => ({ ...item }))
+  //   },
+
+  //   getFavoriteContacts() {
+  //     const contactsCopy = this.copyArray()
+  //     return contactsCopy.filter(contact => contact.isFavorite === true)
+  //   },
+  // },
 }
 </script>
 
@@ -25,7 +32,7 @@ export default {
     <div class="container">
       <div id="app-favorites" class="row">
         <div
-          v-for="contact in contacts"
+          v-for="contact in favoriteContacts"
           :key="contact.id"
           class="favorite col s6 m4 l3 xl2"
         >
