@@ -5,9 +5,9 @@ import TabRecentCalls from './components/TabRecentCalls.vue'
 import ModalSearchResults from './components/ModalSearchResults.vue'
 
 import ContactsListTab from './components/contacts/ContactsListTab.vue'
-import ModalAddContact from './components/contacts/ContactSubmitterModal.vue'
-import ModalEditContact from './components/contacts/ContactEdittorModal.vue'
-import ModalContactDetail from './components/contacts/ContactDetailModal.vue'
+import ContactSubmitterModal from './components/contacts/ContactSubmitterModal.vue'
+import ContactEditorModal from './components/contacts/ContactEditorModal.vue'
+import ContactDetailModal from './components/contacts/ContactDetailModal.vue'
 
 export default {
   components: {
@@ -15,9 +15,9 @@ export default {
     TabFavorites,
     TabRecentCalls,
     ContactsListTab,
-    ModalAddContact,
-    ModalEditContact,
-    ModalContactDetail,
+    ContactSubmitterModal,
+    ContactEditorModal,
+    ContactDetailModal,
     ModalSearchResults,
   },
 
@@ -69,12 +69,12 @@ export default {
 
   <!-- Modal Structure  -->
 
-  <ModalAddContact @contact-added="contacts.push($event)" />
-  <ModalEditContact
+  <ContactSubmitterModal @contact-added="contacts.push($event)" />
+  <ContactEditorModal
     :selectedContact="selectedContact"
     @contact-edit="contacts = contactsWithSwapped($event)"
   />
-  <ModalContactDetail
+  <ContactDetailModal
     :selectedContact="selectedContact"
     @toggle-favorite="contacts = contactsWithSwapped($event)"
   />
