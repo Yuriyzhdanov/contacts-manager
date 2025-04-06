@@ -83,9 +83,9 @@ export default {
     @toggle-favorite="contacts = contactsWithSwapped($event)"
     @remove-contact="contacts = removeContactFromList($event)"
   />
-  <!-- <ModalSearchResults
+  <ModalSearchResults
     v-if="contacts"
     :contacts="contacts"
     :search-query="searchQuery"
-  /> -->
+  />
 </template>
