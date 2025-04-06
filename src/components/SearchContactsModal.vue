@@ -20,9 +20,6 @@ export default {
     <div class="modal-content">
       <div class="wrap-content">
         <h5 class="header">Найдено: {{ contactsCount }}</h5>
-        {{ filteredContacts }}
-        {{ searchQuery }}
-        {{ contacts }}
         <ul class="collection">
           <li
             v-for="contact in filteredContacts"

@@ -2,7 +2,7 @@
 import NavigationBar from './components/NavigationBar.vue'
 import TabFavorites from './components/TabFavorites.vue'
 import TabRecentCalls from './components/TabRecentCalls.vue'
-import ModalSearchResults from './components/ModalSearchResults.vue'
+import SearchContactsModal from './components/SearchContactsModal.vue'
 
 import ContactsListTab from './components/contacts/ContactsListTab.vue'
 import ContactSubmitterModal from './components/contacts/ContactSubmitterModal.vue'
@@ -18,7 +18,7 @@ export default {
     ContactSubmitterModal,
     ContactEditorModal,
     ContactDetailModal,
-    ModalSearchResults,
+    SearchContactsModal,
   },
 
   data() {
@@ -83,7 +83,7 @@ export default {
     @toggle-favorite="contacts = contactsWithSwapped($event)"
     @remove-contact="contacts = removeContactFromList($event)"
   />
-  <ModalSearchResults
+  <SearchContactsModal
     v-if="contacts"
     :contacts="contacts"
     :search-query="searchQuery"
