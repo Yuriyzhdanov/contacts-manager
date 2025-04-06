@@ -13,17 +13,6 @@ export default {
       return this.contacts.filter(contact => contact.isFavorite)
     },
   },
-
-  // methods: {
-  //   copyArray() {
-  //     return this.contacts.map(item => ({ ...item }))
-  //   },
-
-  //   getFavoriteContacts() {
-  //     const contactsCopy = this.copyArray()
-  //     return contactsCopy.filter(contact => contact.isFavorite === true)
-  //   },
-  // },
 }
 </script>
 
@@ -31,7 +20,13 @@ export default {
   <div id="tab-1" class="col s12">
     <div class="container">
       <div id="app-favorites" class="row">
+        <p v-if="favoriteContacts.length === 0" class="empty-state">
+          <span class="material-symbols-outlined icon">star</span>
+          <br />
+          <span>Список избранных пуст</span>
+        </p>
         <div
+          v-else
           v-for="contact in favoriteContacts"
           :key="contact.id"
           class="favorite col s6 m4 l3 xl2"
