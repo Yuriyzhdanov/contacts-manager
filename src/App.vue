@@ -63,7 +63,7 @@ export default {
     <NavigationBar @on-search-query="searchQuery = $event" />
     <div>
       <TabFavorites :contacts="contacts" />
-      <!-- <TabRecentCalls /> -->
+      <TabRecentCalls :contacts="contacts" />
       <ContactsListTab
         :contacts="contacts"
         @update-selected-contact="selectedContact = $event"
