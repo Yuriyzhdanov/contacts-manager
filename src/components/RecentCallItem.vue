@@ -13,7 +13,7 @@ export default {
         <i class="material-icons circle teal darken-3">person</i>
         <span class="title"><b>0991234567</b></span>
         <p>
-          <i>{{ contact.lastCallTime }}</i>
+          <i>{{ '213 секунд назад' }}</i>
         </p>
         <a href="#!" class="secondary-content">
           <i class="material-icons">phone</i>

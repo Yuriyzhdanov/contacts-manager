@@ -6,6 +6,12 @@ export default {
   },
 
   props: ['contacts'],
+
+  computed: {
+    recentCalls() {
+      return this.contacts.filter(contact => contact.isCalls)
+    },
+  },
 }
 </script>
 
@@ -19,7 +25,7 @@ export default {
               <div class="container">
                 <div class="row valign-wrapper">
                   <RecentCallItem
-                    v-for="contact in contacts"
+                    v-for="contact in recentCalls"
                     :key="contact.id"
                     :contact="contact"
                   />

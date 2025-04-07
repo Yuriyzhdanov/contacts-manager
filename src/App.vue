@@ -32,6 +32,7 @@ export default {
           lastName: 'Petrov',
           phone: '123456789',
           isFavorite: false,
+          isCalls: true,
         },
         {
           id: 42,
@@ -39,6 +40,7 @@ export default {
           lastName: 'Vasilev',
           phone: '987654321',
           isFavorite: true,
+          isCalls: false,
         },
       ],
     }
