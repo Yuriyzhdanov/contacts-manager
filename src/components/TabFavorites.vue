@@ -2,19 +2,11 @@
 import FavoriteCard from './FavoriteCard.vue'
 
 export default {
-  components: {
-    FavoriteCard,
-  },
+  components: { FavoriteCard },
 
-  props: ['contacts'],
+  props: ['favoriteContacts'],
 
   emits: ['call-phone'],
-
-  computed: {
-    favoriteContacts() {
-      return this.contacts.filter(contact => contact.isFavorite)
-    },
-  },
 }
 </script>
 
@@ -29,12 +21,12 @@ export default {
         </p>
         <div
           v-else
-          v-for="contact in favoriteContacts"
-          :key="contact.id"
-          @click="$emit('call-phone', contact.phone)"
+          v-for="favoriteContact of favoriteContacts"
+          :key="favoriteContact.id"
+          @click="$emit('call-phone', favoriteContact.phone)"
           class="favorite col s6 m4 l3 xl2"
         >
-          <FavoriteCard :contact="contact" />
+          <FavoriteCard :favorite-contact="favoriteContact" />
         </div>
       </div>
     </div>

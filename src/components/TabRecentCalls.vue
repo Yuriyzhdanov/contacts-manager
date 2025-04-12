@@ -1,9 +1,8 @@
 <script>
 import RecentCallItem from './RecentCallItem.vue'
+
 export default {
-  components: {
-    RecentCallItem,
-  },
+  components: { RecentCallItem },
 
   props: ['recentCalls'],
 
@@ -18,9 +17,9 @@ export default {
         <div class="recent-call col s12">
           <ul id="app-recent-calls" class="collection">
             <RecentCallItem
-              v-for="recentCall in recentCalls"
+              v-for="recentCall of recentCalls"
               :key="recentCall.id"
-              :recentCall="recentCall"
+              :recent-call="recentCall"
               @click="$emit('call-phone', recentCall.phone)"
             />
           </ul>

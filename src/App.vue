@@ -1,37 +1,17 @@
 <script>
-import ms from 'ms'
 import NavigationBar from './components/NavigationBar.vue'
 import TabFavorites from './components/TabFavorites.vue'
 import TabRecentCalls from './components/TabRecentCalls.vue'
 import SearchContactsModal from './components/SearchContactsModal.vue'
 
 import ContactsListTab from './components/contacts/ContactsListTab.vue'
-import ContactSubmitterModal from './components/contacts/ContactSubmitterModal.vue'
-import ContactEditorModal from './components/contacts/ContactEditorModal.vue'
 import ContactDetailModal from './components/contacts/ContactDetailModal.vue'
+import ContactEditorModal from './components/contacts/ContactEditorModal.vue'
+import ContactSubmitterModal from './components/contacts/ContactSubmitterModal.vue'
+
+import createRecentCallByPhone from './functions/createRecentCallByPhone'
 
 const randPhone = () => (Math.random() * 10000000).toFixed(0).padStart(9, '0')
-
-function getDeltaTimestamp(startTimestamp) {
-  const timestamp = Date.now()
-  return timestamp - startTimestamp
-}
-
-function getFormattedTime(startTimestamp) {
-  const deltaTimestamp = getDeltaTimestamp(startTimestamp)
-  return ms(deltaTimestamp, { long: true })
-}
-
-function createRecentCallByPhone(phone) {
-  const recentCall = {
-    phone,
-    timestamp: Date.now(),
-    get formattedTime() {
-      return getFormattedTime(this.timestamp)
-    },
-  }
-  return recentCall
-}
 
 export default {
   components: {
@@ -57,7 +37,6 @@ export default {
           lastName: 'Petrov',
           phone: '123456789',
           isFavorite: false,
-          isCalls: true,
         },
         {
           id: 42,
@@ -70,6 +49,12 @@ export default {
     }
   },
 
+  computed: {
+    favoriteContacts() {
+      return this.contacts.filter(contact => contact.isFavorite)
+    },
+  },
+
   created() {
     setInterval(() => {
       this.addRecentCallByPhone(randPhone())
@@ -77,33 +62,35 @@ export default {
   },
 
   methods: {
-    contactsWithSwapped(newContact) {
-      return this.contacts.map(contact =>
+    swapContact(newContact) {
+      this.contacts = this.contacts.map(contact =>
         contact.id === newContact.id ? newContact : contact
       )
     },
 
-    removeContactFromList(contact) {
-      return this.contacts.filter(c => c.id !== contact.id)
+    removeContact(contact) {
+      this.contacts = this.contacts.filter(c => c.id !== contact.id)
     },
 
     addRecentCallByPhone(phone) {
+      console.log(phone)
       const recentCall = createRecentCallByPhone(phone)
-      this.recentCalls.push(recentCall)
+      this.recentCalls.unshift(recentCall)
     },
   },
 }
 </script>
+
 <template>
   <div class="wrapper teal lighten-5">
     <NavigationBar @on-search-query="searchQuery = $event" />
     <div>
       <TabFavorites
-        :contacts="contacts"
+        :favorite-contacts="favoriteContacts"
         @call-phone="addRecentCallByPhone($event)"
       />
       <TabRecentCalls
-        :recentCalls="recentCalls"
+        :recent-calls="recentCalls"
         @call-phone="addRecentCallByPhone($event)"
       />
       <ContactsListTab
@@ -115,20 +102,16 @@ export default {
 
   <!-- Modal Structure  -->
 
-  <ContactSubmitterModal @contact-added="contacts.push($event)" />
+  <ContactSubmitterModal @contact-submitted="contacts.push($event)" />
   <ContactEditorModal
-    :selectedContact="selectedContact"
-    @contact-edit="contacts = contactsWithSwapped($event)"
+    :selected-contact="selectedContact"
+    @update-contact="swapContact($event)"
   />
   <ContactDetailModal
-    :selectedContact="selectedContact"
-    @toggle-favorite="contacts = contactsWithSwapped($event)"
-    @remove-contact="contacts = removeContactFromList($event)"
+    :selected-contact="selectedContact"
+    @update-contact="swapContact($event)"
+    @remove-contact="removeContact($event)"
     @call-phone="addRecentCallByPhone($event)"
   />
-  <SearchContactsModal
-    v-if="contacts"
-    :contacts="contacts"
-    :search-query="searchQuery"
-  />
+  <SearchContactsModal :contacts="contacts" :search-query="searchQuery" />
 </template>

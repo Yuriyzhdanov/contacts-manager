@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ['contact'],
+  props: ['favoriteContact'],
 }
 </script>
 <template>
@@ -12,7 +12,7 @@ export default {
       >
     </div>
     <span class="white-text"
-      >{{ contact.firstName }} {{ contact.lastName }}</span
+      >{{ favoriteContact.firstName }} {{ favoriteContact.lastName }}</span
     >
   </div>
 </template>

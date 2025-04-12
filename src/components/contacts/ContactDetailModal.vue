@@ -1,7 +1,8 @@
 <script>
 export default {
   props: ['selectedContact'],
-  emits: ['toggle-favorite', 'remove-contact', 'call-phone'],
+
+  emits: ['update-contact', 'remove-contact', 'call-phone'],
 
   data() {
     return {
@@ -16,20 +17,13 @@ export default {
         this.localContact = { ...newValue }
       },
     },
-  },
-
-  methods: {
-    toggleFavorite() {
-      this.localContact.isFavorite = !this.localContact.isFavorite
-      this.$emit('toggle-favorite', { ...this.localContact })
-    },
-
-    removeContact() {
-      this.$emit('remove-contact', { ...this.localContact })
-    },
-
-    callPhone() {
-      this.$emit('call-phone', this.localContact.phone)
+    localContact: {
+      deep: true,
+      handler(newVal, oldVal) {
+        if (newVal === oldVal) {
+          this.$emit('update-contact', { ...this.localContact })
+        }
+      },
     },
   },
 }
@@ -46,7 +40,7 @@ export default {
             </div>
             <div class="col s6 right-align teal-text text-lighten-5">
               <span
-                @click="toggleFavorite"
+                @click="localContact.isFavorite = !localContact.isFavorite"
                 class="modal-close material-symbols-outlined"
                 :class="{ 'non-fill': !localContact.isFavorite }"
               >
@@ -58,7 +52,7 @@ export default {
                 >edit</span
               >
               <span
-                @click="removeContact"
+                @click="$emit('remove-contact', { ...localContact })"
                 class="modal-close material-symbols-outlined"
                 >delete</span
               >
@@ -83,7 +77,11 @@ export default {
                     <p>
                       <i>когда был звонок сек</i>
                     </p>
-                    <a @click="callPhone" href="#!" class="secondary-content">
+                    <a
+                      href="#!"
+                      class="secondary-content"
+                      @click="$emit('call-phone', localContact.phone)"
+                    >
                       <i class="material-icons">phone</i>
                     </a>
                   </li>

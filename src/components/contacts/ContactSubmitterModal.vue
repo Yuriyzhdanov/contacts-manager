@@ -18,7 +18,7 @@ const initContact = () => ({
 //   .every(([_, val]) => val)
 
 export default {
-  emits: ['contact-added'],
+  emits: ['contact-submitted'],
 
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
       const REQUIRED_FIELDS = ['firstName', 'lastName', 'phone']
       const isVerified = REQUIRED_FIELDS.every(rf => this.contact[rf])
       if (!isVerified) return
-      this.$emit('contact-added', { ...this.contact })
+      this.$emit('contact-submitted', { ...this.contact })
       this.contact = initContact()
     },
   },

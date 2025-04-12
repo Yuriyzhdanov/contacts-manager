@@ -2,7 +2,7 @@
 export default {
   props: ['selectedContact'],
 
-  emits: ['contact-edit'],
+  emits: ['update-contact'],
 
   data() {
     return {
@@ -16,12 +16,6 @@ export default {
       handler(newValue) {
         this.localContact = { ...newValue }
       },
-    },
-  },
-
-  methods: {
-    editContact() {
-      this.$emit('contact-edit', { ...this.localContact })
     },
   },
 }
@@ -81,7 +75,7 @@ export default {
                 </label>
               </div>
               <a
-                @click="editContact"
+                @click="$emit('update-contact', { ...localContact })"
                 id="appAddContact"
                 class="btn-ok waves-effect waves-light btn modal-close"
               >

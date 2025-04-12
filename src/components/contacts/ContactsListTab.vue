@@ -3,10 +3,7 @@ import ContactItem from './ContactItem.vue'
 import UiContactAddButton from '../../ui/UiContactAddButton.vue'
 
 export default {
-  components: {
-    ContactItem,
-    UiContactAddButton,
-  },
+  components: { ContactItem, UiContactAddButton },
 
   props: ['contacts'],
 
