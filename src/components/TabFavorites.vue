@@ -8,6 +8,8 @@ export default {
 
   props: ['contacts'],
 
+  emits: ['call-phone'],
+
   computed: {
     favoriteContacts() {
       return this.contacts.filter(contact => contact.isFavorite)
@@ -29,6 +31,7 @@ export default {
           v-else
           v-for="contact in favoriteContacts"
           :key="contact.id"
+          @click="$emit('call-phone', contact.phone)"
           class="favorite col s6 m4 l3 xl2"
         >
           <FavoriteCard :contact="contact" />
