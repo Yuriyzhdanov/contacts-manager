@@ -1,24 +1,34 @@
 <script>
 export default {
-  props: ['contact'],
+  props: ['recentCall'],
+
+  data() {
+    return {
+      timeAgo: '',
+    }
+  },
+
+  created() {
+    setInterval(() => {
+      this.timeAgo = this.recentCall.formattedTime
+    }, 1000)
+  },
 }
 </script>
 
 <template>
-  <div class="recent-call col s12">
-    <ul id="app-recent-calls" class="collection">
-      <li
-        class="recent-call waves-effect collection-item avatar transparent z-depth-1"
-      >
-        <i class="material-icons circle teal darken-3">person</i>
-        <span class="title"><b>0991234567</b></span>
-        <p>
-          <i>{{ '213 секунд назад' }}</i>
-        </p>
-        <a href="#!" class="secondary-content">
-          <i class="material-icons">phone</i>
-        </a>
-      </li>
-    </ul>
-  </div>
+  <li
+    class="recent-call waves-effect collection-item avatar transparent z-depth-1"
+  >
+    <i class="material-icons circle teal darken-3">person</i>
+    <span class="title"
+      ><b>{{ recentCall.phone }}</b></span
+    >
+    <p>
+      <i>{{ timeAgo }}</i>
+    </p>
+    <a href="#!" class="secondary-content">
+      <i class="material-icons">phone</i>
+    </a>
+  </li>
 </template>
