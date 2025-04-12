@@ -1,41 +1,12 @@
 <script>
 export default {
   props: ['selectedContact'],
-  emits: ['toggle-favorite', 'remove-contact', 'call-updated'],
+  emits: ['toggle-favorite', 'remove-contact', 'call-phone'],
 
   data() {
     return {
       localContact: { ...this.selectedContact },
-      lastCallTime: null,
-      currentTime: new Date(),
     }
-  },
-
-  created() {
-    this.timer = setInterval(() => {
-      this.currentTime = new Date()
-    }, 1000)
-  },
-
-  beforeDestroy() {
-    clearInterval(this.timer)
-  },
-
-  computed: {
-    // formattedLastCallTime() {
-    //   if (!this.lastCallTime) return 'Нет вызовов'
-    //   const callDate = new Date(this.lastCallTime)
-    //   const now = new Date()
-    //   const diffTime = now - callDate
-    //   const diffSeconds = Math.floor(diffTime / 1000)
-    //   return diffSeconds
-    // },
-
-    secondsSinceLastCall() {
-      if (!this.lastCallTime) return
-      const diff = this.currentTime - new Date(this.lastCallTime)
-      return Math.floor(diff / 1000)
-    },
   },
 
   watch: {
@@ -57,9 +28,8 @@ export default {
       this.$emit('remove-contact', { ...this.localContact })
     },
 
-    recordCallTime() {
-      this.lastCallTime = new Date()
-      this.$emit('call-updated', this.lastCallTime)
+    callPhone() {
+      this.$emit('call-phone', this.localContact.phone)
     },
   },
 }
@@ -111,13 +81,9 @@ export default {
                       ><b>{{ localContact.phone }}</b></span
                     >
                     <p>
-                      <i>{{ secondsSinceLastCall }}</i>
+                      <i>когда был звонок сек</i>
                     </p>
-                    <a
-                      @click="recordCallTime"
-                      href="#!"
-                      class="secondary-content"
-                    >
+                    <a @click="callPhone" href="#!" class="secondary-content">
                       <i class="material-icons">phone</i>
                     </a>
                   </li>
