@@ -55,11 +55,11 @@ export default {
     },
   },
 
-  created() {
-    setInterval(() => {
-      this.addRecentCallByPhone(randPhone())
-    }, 5000)
-  },
+  // created() {
+  //   setInterval(() => {
+  //     this.addRecentCallByPhone(randPhone())
+  //   }, 5000)
+  // },
 
   methods: {
     swapContact(newContact) {
@@ -73,7 +73,6 @@ export default {
     },
 
     addRecentCallByPhone(phone) {
-      console.log(phone)
       const recentCall = createRecentCallByPhone(phone)
       this.recentCalls.unshift(recentCall)
     },
@@ -113,5 +112,9 @@ export default {
     @remove-contact="removeContact($event)"
     @call-phone="addRecentCallByPhone($event)"
   />
-  <SearchContactsModal :contacts="contacts" :search-query="searchQuery" />
+  <SearchContactsModal
+    :contacts="contacts"
+    :search-query="searchQuery"
+    @call-phone="addRecentCallByPhone($event)"
+  />
 </template>

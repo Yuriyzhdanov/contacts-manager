@@ -4,6 +4,8 @@ import { searchContacts } from '../functions/searchContacts.js'
 export default {
   props: ['contacts', 'searchQuery'],
 
+  emits: ['call-phone'],
+
   computed: {
     contactsCount() {
       return this.filteredContacts.length
@@ -25,6 +27,7 @@ export default {
             v-for="contact in filteredContacts"
             :key="contact.id"
             class="collection-item avatar"
+            @click="$emit('call-phone', contact.phone)"
           >
             <i class="material-icons circle green">assessment</i>
             <span class="title">{{ contact.firstName }}</span>
