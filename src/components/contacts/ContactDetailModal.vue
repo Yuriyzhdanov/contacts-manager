@@ -68,6 +68,7 @@ export default {
               <div class="col s12">
                 <ul class="collection">
                   <li
+                    @click="$emit('call-phone', localContact.phone)"
                     class="waves-effect collection-item avatar transparent z-depth-1"
                   >
                     <i class="material-icons circle teal darken-3">person</i>
@@ -77,11 +78,7 @@ export default {
                     <p>
                       <i>когда был звонок сек</i>
                     </p>
-                    <a
-                      href="#!"
-                      class="secondary-content"
-                      @click="$emit('call-phone', localContact.phone)"
-                    >
+                    <a href="#!" class="secondary-content">
                       <i class="material-icons">phone</i>
                     </a>
                   </li>
