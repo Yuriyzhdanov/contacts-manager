@@ -73,9 +73,14 @@ export default {
       this.contacts = this.contacts.filter(c => c.id !== contact.id)
     },
 
-    addRecentCallByPhone(phone, userContact) {
-      const recentCall = createRecentCallByPhone(phone, userContact)
+    addRecentCallByPhone(phone) {
+      const recentCall = createRecentCallByPhone(phone)
+      recentCall.contact = this.getContactByPhone(phone)
       this.recentCalls.unshift(recentCall)
+    },
+
+    getContactByPhone(phone) {
+      return this.contacts.find(c => c.phone === phone)
     },
 
     // getContactName(user) {
@@ -118,7 +123,7 @@ export default {
     :selected-contact="selectedContact"
     @update-contact="swapContact($event)"
     @remove-contact="removeContact($event)"
-    @call-phone="addRecentCallByPhone($event.phone, $event.userContact)"
+    @call-phone="addRecentCallByPhone($event)"
   />
   <SearchContactsModal
     :contacts="contacts"

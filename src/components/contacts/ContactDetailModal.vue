@@ -69,10 +69,7 @@ export default {
                 <ul class="collection">
                   <li
                     @click="
-                      $emit('call-phone', {
-                        phone: localContact.phone,
-                        userContact: localContact.firstName,
-                      })
+                       $emit('call-phone', localContact.phone)
                     "
                     class="waves-effect collection-item avatar transparent z-depth-1"
                   >

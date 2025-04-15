@@ -10,10 +10,9 @@ function getFormattedTime(startTimestamp) {
   return ms(deltaTimestamp, { long: true })
 }
 
-function createRecentCallByPhone(phone, userContact) {
+function createRecentCallByPhone(phone) {
   const recentCall = {
     phone,
-    userContact,
     timestamp: Date.now(),
     get formattedTime() {
       return getFormattedTime(this.timestamp)

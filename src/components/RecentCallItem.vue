@@ -21,10 +21,14 @@ export default {
     class="recent-call waves-effect collection-item avatar transparent z-depth-1"
   >
     <i class="material-icons circle teal darken-3">person</i>
-    <span class="title"
-      ><b>{{ recentCall.phone }}</b></span
-    >
-    <span>{{ ' ' + recentCall.userContact }}</span>
+    <span class="title">
+      <b> {{ recentCall.phone }} </b>
+    </span>
+
+    <span> {{ recentCall.contact?.firstName }} </span>
+
+    <span> {{ recentCall.contact?.lastName }} </span>
+
     <p>
       <i>{{ timeAgo }}</i>
     </p>
