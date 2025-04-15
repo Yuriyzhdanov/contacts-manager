@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ['selectedContact'],
+  props: ['selectedContact', 'recentCall'],
 
   emits: ['update-contact', 'remove-contact', 'call-phone'],
 
@@ -68,7 +68,12 @@ export default {
               <div class="col s12">
                 <ul class="collection">
                   <li
-                    @click="$emit('call-phone', localContact.phone)"
+                    @click="
+                      $emit('call-phone', {
+                        phone: localContact.phone,
+                        userContact: localContact.firstName,
+                      })
+                    "
                     class="waves-effect collection-item avatar transparent z-depth-1"
                   >
                     <i class="material-icons circle teal darken-3">person</i>

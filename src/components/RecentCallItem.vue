@@ -24,6 +24,7 @@ export default {
     <span class="title"
       ><b>{{ recentCall.phone }}</b></span
     >
+    <span>{{ ' ' + recentCall.userContact }}</span>
     <p>
       <i>{{ timeAgo }}</i>
     </p>

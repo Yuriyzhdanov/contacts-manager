@@ -30,6 +30,7 @@ export default {
       searchQuery: '',
       selectedContact: {},
       recentCalls: [],
+      contactName: {},
       contacts: [
         {
           id: 33,
@@ -72,10 +73,17 @@ export default {
       this.contacts = this.contacts.filter(c => c.id !== contact.id)
     },
 
-    addRecentCallByPhone(phone) {
-      const recentCall = createRecentCallByPhone(phone)
+    addRecentCallByPhone(phone, userContact) {
+      const recentCall = createRecentCallByPhone(phone, userContact)
       this.recentCalls.unshift(recentCall)
     },
+
+    // getContactName(user) {
+    //   return {
+    //     firstName: user.name,
+    //     lastName: user.surname,
+    //   }
+    // },
   },
 }
 </script>
@@ -110,7 +118,7 @@ export default {
     :selected-contact="selectedContact"
     @update-contact="swapContact($event)"
     @remove-contact="removeContact($event)"
-    @call-phone="addRecentCallByPhone($event)"
+    @call-phone="addRecentCallByPhone($event.phone, $event.userContact)"
   />
   <SearchContactsModal
     :contacts="contacts"
