@@ -1,8 +1,8 @@
 <script>
 import NavigationBar from './components/NavigationBar.vue'
-import TabFavorites from './components/TabFavorites.vue'
+import FavoriteContactsListTab from './components/FavoriteContactsListTab.vue'
 import TabRecentCalls from './components/TabRecentCalls.vue'
-import ContactsSearchModal from './components/ContactsSearchModal.vue'
+import SearchedContactsModal from './components/SearchedContactsModal.vue'
 
 import ContactsListTab from './components/contacts/ContactsListTab.vue'
 import ContactDetailModal from './components/contacts/ContactDetailModal.vue'
@@ -10,19 +10,20 @@ import ContactEditorModal from './components/contacts/ContactEditorModal.vue'
 import ContactSubmitterModal from './components/contacts/ContactSubmitterModal.vue'
 
 import createRecentCallByPhone from './functions/createRecentCallByPhone'
+import { searchContacts } from './functions/searchContacts'
 
 const randPhone = () => (Math.random() * 10000000).toFixed(0).padStart(9, '0')
 
 export default {
   components: {
     NavigationBar,
-    TabFavorites,
+    FavoriteContactsListTab,
     TabRecentCalls,
     ContactsListTab,
     ContactSubmitterModal,
     ContactEditorModal,
     ContactDetailModal,
-    ContactsSearchModal,
+    SearchedContactsModal,
   },
 
   data() {
@@ -30,7 +31,7 @@ export default {
       searchQuery: '',
       selectedContact: {},
       recentCalls: [],
-      contactName: {},
+
       contacts: [
         {
           id: 33,
@@ -53,6 +54,10 @@ export default {
   computed: {
     favoriteContacts() {
       return this.contacts.filter(contact => contact.isFavorite)
+    },
+
+    searchedContacts() {
+      return searchContacts(this.searchQuery, this.contacts)
     },
   },
 
@@ -82,13 +87,6 @@ export default {
     getContactByPhone(phone) {
       return this.contacts.find(c => c.phone === phone)
     },
-
-    // getContactName(user) {
-    //   return {
-    //     firstName: user.name,
-    //     lastName: user.surname,
-    //   }
-    // },
   },
 }
 </script>
@@ -97,7 +95,7 @@ export default {
   <div class="wrapper teal lighten-5">
     <NavigationBar @on-search-query="searchQuery = $event" />
     <div>
-      <TabFavorites
+      <FavoriteContactsListTab
         :favorite-contacts="favoriteContacts"
         @call-phone="addRecentCallByPhone($event)"
       />
@@ -125,8 +123,8 @@ export default {
     @remove-contact="removeContact($event)"
     @call-phone="addRecentCallByPhone($event)"
   />
-  <ContactsSearchModal
-    :contacts="contacts"
+  <SearchedContactsModal
+    :searched-contacts="searchedContacts"
     :search-query="searchQuery"
     @call-phone="addRecentCallByPhone($event)"
   />
