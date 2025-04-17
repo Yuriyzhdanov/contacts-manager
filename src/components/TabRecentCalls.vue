@@ -1,8 +1,8 @@
 <script>
-import RecentCallItem from './RecentCallItem.vue'
+import RecentCallCard from './RecentCallCard.vue'
 
 export default {
-  components: { RecentCallItem },
+  components: { RecentCallCard },
 
   props: ['recentCalls'],
 
@@ -16,7 +16,7 @@ export default {
       <div class="row valign-wrapper">
         <div class="recent-call col s12">
           <ul id="app-recent-calls" class="collection">
-            <RecentCallItem
+            <RecentCallCard
               v-for="recentCall of recentCalls"
               :key="recentCall.id"
               :recent-call="recentCall"

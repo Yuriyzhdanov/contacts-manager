@@ -2,7 +2,7 @@
 import NavigationBar from './components/NavigationBar.vue'
 import TabFavorites from './components/TabFavorites.vue'
 import TabRecentCalls from './components/TabRecentCalls.vue'
-import SearchContactsModal from './components/SearchContactsModal.vue'
+import ContactsSearchModal from './components/ContactsSearchModal.vue'
 
 import ContactsListTab from './components/contacts/ContactsListTab.vue'
 import ContactDetailModal from './components/contacts/ContactDetailModal.vue'
@@ -22,7 +22,7 @@ export default {
     ContactSubmitterModal,
     ContactEditorModal,
     ContactDetailModal,
-    SearchContactsModal,
+    ContactsSearchModal,
   },
 
   data() {
@@ -125,7 +125,7 @@ export default {
     @remove-contact="removeContact($event)"
     @call-phone="addRecentCallByPhone($event)"
   />
-  <SearchContactsModal
+  <ContactsSearchModal
     :contacts="contacts"
     :search-query="searchQuery"
     @call-phone="addRecentCallByPhone($event)"
