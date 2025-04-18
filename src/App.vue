@@ -52,10 +52,6 @@ export default {
   },
 
   computed: {
-    favoriteContacts() {
-      return this.contacts.filter(contact => contact.isFavorite)
-    },
-
     searchedContacts() {
       return searchContacts(this.searchQuery, this.contacts)
     },
@@ -96,7 +92,7 @@ export default {
     <NavigationBar v-model="searchQuery" />
     <div>
       <FavoriteContactsListTab
-        :favorite-contacts="favoriteContacts"
+        :contacts="contacts"
         @call-phone="addRecentCallByPhone($event)"
       />
       <TabRecentCalls

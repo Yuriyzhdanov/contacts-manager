@@ -4,9 +4,15 @@ import FavoriteContactItem from './FavoriteContactItem.vue'
 export default {
   components: { FavoriteContactItem },
 
-  props: ['favoriteContacts'],
+  props: ['contacts'],
 
   emits: ['call-phone'],
+
+  computed: {
+    favoriteContacts() {
+      return this.contacts.filter(contact => contact.isFavorite)
+    },
+  },
 }
 </script>
 
