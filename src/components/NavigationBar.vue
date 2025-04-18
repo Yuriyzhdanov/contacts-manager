@@ -1,18 +1,8 @@
 <script>
 export default {
-  emits: ['on-search-query'],
+  props: ['modelValue'],
 
-  data() {
-    return {
-      searchQuery: '',
-    }
-  },
-
-  watch: {
-    searchQuery(newQuery) {
-      this.$emit('on-search-query', newQuery)
-    },
-  },
+  emits: ['update:model-value'],
 }
 </script>
 
@@ -22,7 +12,8 @@ export default {
       <form>
         <div class="input-field">
           <input
-            v-model="searchQuery"
+            :value="modelValue"
+            @input="$emit('update:model-value', $event.target.value)"
             class="teal-text text-lighten-5"
             id="search"
             type="search"

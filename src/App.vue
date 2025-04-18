@@ -93,7 +93,7 @@ export default {
 
 <template>
   <div class="wrapper teal lighten-5">
-    <NavigationBar @on-search-query="searchQuery = $event" />
+    <NavigationBar v-model="searchQuery" />
     <div>
       <FavoriteContactsListTab
         :favorite-contacts="favoriteContacts"
@@ -128,4 +128,16 @@ export default {
     :search-query="searchQuery"
     @call-phone="addRecentCallByPhone($event)"
   />
+  <button class="qwerty" @click="searchQuery = 'Vasya'">
+    {{ searchQuery }}
+  </button>
 </template>
+
+<style>
+button.qwerty {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 9999999;
+}
+</style>
