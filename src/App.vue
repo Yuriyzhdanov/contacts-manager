@@ -124,16 +124,4 @@ export default {
     :search-query="searchQuery"
     @call-phone="addRecentCallByPhone($event)"
   />
-  <button class="qwerty" @click="searchQuery = 'Vasya'">
-    {{ searchQuery }}
-  </button>
 </template>
-
-<style>
-button.qwerty {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 9999999;
-}
-</style>
