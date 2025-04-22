@@ -1,5 +1,9 @@
 <script>
+import UiNavBar from '@/ui/UiNavBar.vue'
+
 export default {
+  components: { UiNavBar },
+
   props: ['modelValue'],
 
   emits: ['update:model-value'],
@@ -28,24 +32,6 @@ export default {
       </form>
     </div>
 
-    <div class="nav-content">
-      <ul class="tabs tabs-transparent">
-        <li class="tab">
-          <a href="#tab-1">
-            <span class="material-symbols-outlined">star</span>
-          </a>
-        </li>
-        <li class="tab">
-          <a href="#tab-2">
-            <span class="material-symbols-outlined">chronic</span>
-          </a>
-        </li>
-        <li class="tab">
-          <a class="active" href="#tab-3">
-            <span class="material-symbols-outlined">people</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <UiNavBar />
   </nav>
 </template>
