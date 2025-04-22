@@ -4,15 +4,20 @@ export default {
 
   data() {
     return {
-      timeAgo: '',
+      timeAgo: '0 seconds',
     }
   },
 
   created() {
     setInterval(() => {
       this.timeAgo = this.recentCall.formattedTime
-    }, 1000)
+    }, 5000)
   },
+  // computed: {
+  //   timeAgo() {
+  //     return this.recentCall.formattedTime
+  //   },
+  // },
 }
 </script>
 
@@ -22,10 +27,10 @@ export default {
   >
     <i class="material-icons circle teal darken-3">person</i>
     <span class="title">
-      <b> {{ recentCall.phone }} </b>
+      <b> {{ recentCall.phone }} &nbsp;</b>
     </span>
 
-    <span> {{ recentCall.contact?.firstName }} </span>
+    <span> {{ recentCall.contact?.firstName }} &nbsp;</span>
 
     <span> {{ recentCall.contact?.lastName }} </span>
 

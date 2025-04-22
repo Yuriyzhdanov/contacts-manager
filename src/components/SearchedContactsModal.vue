@@ -1,8 +1,8 @@
 <script>
-import SearchQueryInput from './SearchQueryInput.vue'
+import SearchedContactItem from './SearchedContactItem.vue'
 
 export default {
-  components: { SearchQueryInput },
+  components: { SearchedContactItem },
 
   props: ['searchedContacts'],
 
@@ -22,7 +22,7 @@ export default {
       <div class="wrap-content">
         <h5 class="header">Найдено: {{ searchedContactsCount }}</h5>
         <ul class="collection">
-          <SearchQueryInput
+          <SearchedContactItem
             v-for="searchedContact in searchedContacts"
             :key="searchedContact.id"
             :searchedContact="searchedContact"

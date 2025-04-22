@@ -1,7 +1,7 @@
 <script>
 import NavigationBar from './components/NavigationBar.vue'
 import FavoriteContactsListTab from './components/FavoriteContactsListTab.vue'
-import TabRecentCalls from './components/TabRecentCalls.vue'
+import RecentCallsListTab from './components/RecentCallsListTab.vue'
 import SearchedContactsModal from './components/SearchedContactsModal.vue'
 
 import ContactsListTab from './components/contacts/ContactsListTab.vue'
@@ -18,7 +18,7 @@ export default {
   components: {
     NavigationBar,
     FavoriteContactsListTab,
-    TabRecentCalls,
+    RecentCallsListTab,
     ContactsListTab,
     ContactSubmitterModal,
     ContactEditorModal,
@@ -95,7 +95,7 @@ export default {
         :contacts="contacts"
         @call-phone="addRecentCallByPhone($event)"
       />
-      <TabRecentCalls
+      <RecentCallsListTab
         :recent-calls="recentCalls"
         @call-phone="addRecentCallByPhone($event)"
       />
