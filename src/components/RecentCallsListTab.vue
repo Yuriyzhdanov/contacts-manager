@@ -13,7 +13,13 @@ export default {
 <template>
   <div id="tab-2" class="col s12" style="display: none">
     <div class="container">
-      <div class="row valign-wrapper">
+      <p v-if="recentCalls.length === 0" class="empty-state">
+        <span class="material-symbols-outlined icon">history</span>
+        <br />
+        <span>Список недавних вызовов пуст</span>
+      </p>
+
+      <div v-else class="row valign-wrapper">
         <div class="recent-call col s12">
           <ul id="app-recent-calls" class="collection">
             <RecentCallCard

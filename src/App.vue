@@ -31,23 +31,7 @@ export default {
       searchQuery: '',
       selectedContact: {},
       recentCalls: [],
-
-      contacts: [
-        {
-          id: 33,
-          firstName: 'Vasya',
-          lastName: 'Petrov',
-          phone: '123456789',
-          isFavorite: false,
-        },
-        {
-          id: 42,
-          firstName: 'Petya',
-          lastName: 'Vasilev',
-          phone: '987654321',
-          isFavorite: true,
-        },
-      ],
+      contacts: [],
     }
   },
 
