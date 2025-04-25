@@ -118,6 +118,7 @@ export default {
     @update-contact="swapContact($event)"
     @remove-contact="removeContact($event)"
     @call-phone="addRecentCallByPhone($event)"
+    :recent-calls="recentCalls"
   />
   <SearchedContactsModal
     :searched-contacts="searchedContacts"

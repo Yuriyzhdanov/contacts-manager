@@ -1,13 +1,20 @@
 <script>
 export default {
-  props: ['selectedContact', 'recentCall'],
+  props: ['selectedContact', 'recentCalls'],
 
   emits: ['update-contact', 'remove-contact', 'call-phone'],
 
   data() {
     return {
       localContact: { ...this.selectedContact },
+      timeAgo: '0 seconds',
     }
+  },
+
+  created() {
+    setInterval(() => {
+      this.timeAgo = this.recentCalls[0]?.formattedTime
+    }, 5000)
   },
 
   watch: {
@@ -68,9 +75,7 @@ export default {
               <div class="col s12">
                 <ul class="collection">
                   <li
-                    @click="
-                       $emit('call-phone', localContact.phone)
-                    "
+                    @click="$emit('call-phone', localContact.phone)"
                     class="waves-effect collection-item avatar transparent z-depth-1"
                   >
                     <i class="material-icons circle teal darken-3">person</i>
@@ -78,7 +83,7 @@ export default {
                       ><b>{{ localContact.phone }}</b></span
                     >
                     <p>
-                      <i>когда был звонок сек</i>
+                      <i>звонок совершен {{ timeAgo }} ago </i>
                     </p>
                     <a href="#!" class="secondary-content">
                       <i class="material-icons">phone</i>
