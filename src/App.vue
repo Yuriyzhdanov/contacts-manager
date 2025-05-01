@@ -1,5 +1,6 @@
 <script>
-import NavigationBar from './components/NavigationBar.vue'
+import UiNavBar from '@/ui/UiNavBar.vue'
+import SearchQueryEditor from './components/SearchQueryEditor.vue'
 import FavoriteContactsListTab from './components/FavoriteContactsListTab.vue'
 import RecentCallsListTab from './components/RecentCallsListTab.vue'
 import SearchedContactsModal from './components/SearchedContactsModal.vue'
@@ -11,12 +12,12 @@ import ContactSubmitterModal from './components/contacts/ContactSubmitterModal.v
 
 import createRecentCallByPhone from './functions/createRecentCallByPhone'
 import { searchContacts } from './functions/searchContacts'
-
 const randPhone = () => (Math.random() * 10000000).toFixed(0).padStart(9, '0')
 
 export default {
   components: {
-    NavigationBar,
+    UiNavBar,
+    SearchQueryEditor,
     FavoriteContactsListTab,
     RecentCallsListTab,
     ContactsListTab,
@@ -73,7 +74,12 @@ export default {
 
 <template>
   <div class="wrapper teal lighten-5">
-    <NavigationBar v-model="searchQuery" />
+    <nav class="nav-extended teal">
+      <SearchQueryEditor v-model="searchQuery" />
+
+      <UiNavBar />
+    </nav>
+
     <div>
       <FavoriteContactsListTab
         :contacts="contacts"
