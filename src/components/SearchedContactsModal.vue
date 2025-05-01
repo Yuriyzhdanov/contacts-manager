@@ -25,7 +25,7 @@ export default {
           <SearchedContactItem
             v-for="searchedContact in searchedContacts"
             :key="searchedContact.id"
-            :searchedContact="searchedContact"
+            :searched-contact="searchedContact"
             class="collection-item avatar"
             @click="$emit('call-phone', searchedContact.phone)"
           />

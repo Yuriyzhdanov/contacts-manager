@@ -105,14 +105,13 @@ export default {
   />
   <ContactDetailModal
     :selected-contact="selectedContact"
+    :recent-calls="recentCalls"
     @update-contact="swapContact($event)"
     @remove-contact="removeContact($event)"
     @call-phone="addRecentCallByPhone($event)"
-    :recent-calls="recentCalls"
   />
   <SearchedContactsModal
     :searched-contacts="searchedContacts"
-    :search-query="searchQuery"
     @call-phone="addRecentCallByPhone($event)"
   />
 </template>
