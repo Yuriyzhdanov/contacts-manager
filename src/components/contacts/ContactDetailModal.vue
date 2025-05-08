@@ -83,7 +83,7 @@ export default {
                       ><b>{{ localContact.phone }}</b></span
                     >
                     <p v-if="recentCalls.length">
-                      <i>звонок совершен {{ timeAgo }} ago </i>
+                      <i>call made {{ timeAgo }} ago </i>
                     </p>
                     <a href="#!" class="secondary-content">
                       <i class="material-icons">phone</i>

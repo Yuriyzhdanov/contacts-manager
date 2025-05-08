@@ -22,7 +22,7 @@ export default {
       <p v-if="favoriteContacts.length === 0" class="empty-state">
         <span class="material-symbols-outlined icon">star</span>
         <br />
-        <span>Список избранных пуст</span>
+        <span>Favorites list is empty</span>
       </p>
 
       <div v-else id="app-favorites" class="row">

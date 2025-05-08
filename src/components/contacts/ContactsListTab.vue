@@ -16,7 +16,7 @@ export default {
     <p v-if="contacts.length === 0" class="empty-state">
       <span class="material-symbols-outlined icon">contacts</span>
       <br />
-      <span>Список контактов пуст</span>
+      <span>Contact list is empty</span>
     </p>
 
     <ul v-else id="app-contacts" class="collection">

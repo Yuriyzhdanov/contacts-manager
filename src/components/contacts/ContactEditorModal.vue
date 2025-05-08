@@ -25,7 +25,7 @@ export default {
   <div id="modal0" class="modal bottom-sheet">
     <div class="modal-content">
       <div class="wrap-content row">
-        <h5 class="header">Редактировать контакт</h5>
+        <h5 class="header">Edit contact</h5>
         <form class="col s12" autocomplete="off">
           <div class="row">
             <div class="input-field col s12">
@@ -36,7 +36,7 @@ export default {
                 type="text"
                 autocomplete="new-password"
               />
-              <label for="firstName">Имя</label>
+              <label for="firstName">Name</label>
             </div>
           </div>
           <div class="row">
@@ -48,7 +48,7 @@ export default {
                 type="text"
                 autocomplete="new-password"
               />
-              <label for="lastName">Фамилия</label>
+              <label for="lastName">Last name</label>
             </div>
           </div>
           <div class="row">
@@ -60,7 +60,7 @@ export default {
                 type="tel"
                 autocomplete="new-password"
               />
-              <label for="phone">Телефон</label>
+              <label for="phone">Phone</label>
             </div>
           </div>
           <div class="row">
@@ -72,7 +72,7 @@ export default {
                   class="transparent teal-text waves-effect waves-light btn modal-close"
                 >
                   <i class="material-icons left">close</i>
-                  Отмена
+                  Cancel
                 </label>
               </div>
               <a
@@ -81,7 +81,7 @@ export default {
                 class="btn-ok waves-effect waves-light btn modal-close"
               >
                 <i class="material-icons left">check</i>
-                <span>Редактировать</span>
+                <span>Edit</span>
               </a>
             </div>
           </div>

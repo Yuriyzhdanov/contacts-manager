@@ -16,7 +16,7 @@ export default {
           class="teal-text text-lighten-5"
           id="search"
           type="search"
-          placeholder="Поиск в контактах"
+          placeholder="Search in contacts"
           required
         />
         <label class="label-icon" for="search"

@@ -20,7 +20,7 @@ export default {
   <div id="modal3" class="modal bottom-sheet modal-close non-overlay">
     <div class="modal-content">
       <div class="wrap-content">
-        <h5 class="header">Найдено: {{ searchedContactsCount }}</h5>
+        <h5 class="header">Found: {{ searchedContactsCount }}</h5>
         <ul class="collection">
           <SearchedContactItem
             v-for="searchedContact in searchedContacts"

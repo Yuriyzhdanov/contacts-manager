@@ -16,7 +16,7 @@ export default {
       <p v-if="recentCalls.length === 0" class="empty-state">
         <span class="material-symbols-outlined icon">history</span>
         <br />
-        <span>Список недавних вызовов пуст</span>
+        <span>Recent calls list is empty</span>
       </p>
 
       <div v-else class="row valign-wrapper">
